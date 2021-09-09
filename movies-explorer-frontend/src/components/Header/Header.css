@@ -1,0 +1,75 @@
+.header{
+    display:flex;
+    padding: 18px 70px;
+    justify-content: space-between;
+}
+
+.header__container{
+    justify-content: center;
+}
+
+.header__loginBtn{
+    margin-left:30px;
+    padding: 8px 20px;
+    background-color: #2BE080;
+    border-radius: 3px;
+    border:0;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;        
+}
+
+.header__registration{
+    font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px;
+letter-spacing: 0px;
+color: #FFFFFF;
+}
+
+.header_landingColor{
+    background-color: #073042;
+}
+
+.header__link{
+    margin-right:0;
+    font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+/* identical to box height, or 129% */
+text-align: right;
+color: #000000;
+}
+
+.header__link:first-child{
+    margin-right: 20px;
+}
+
+.header__accBtn{
+    margin-left:50px;
+    width:100px;
+    height:32px;
+/* identical to box height, or 114% */
+text-align: center;
+align-items: center;
+color: #000000;
+background-color: #F9F9F9;
+border:0;
+border-radius: 20px;
+   box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+   font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+}
+
+
+

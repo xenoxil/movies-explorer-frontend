@@ -1,0 +1,125 @@
+.aboutMe{   
+    background-color: #FFFFFF;
+    width:1140px;
+    padding: 0 70px;
+}
+
+.aboutMe__title{
+    width:1140px;
+    text-align: start;
+    margin:0;
+    padding:110px 0 23px;
+    border-bottom: 1px solid #000000;
+    font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 22px;
+line-height: 27px;
+/* identical to box height */
+letter-spacing: -0.04em;
+color: #000000;    
+}
+
+.aboutMe__student{
+    margin:66px 0 0;
+    display:flex;
+    justify-content: space-between;
+}
+.aboutMe__container{
+    width:600px;
+}
+.aboutMe__name{ 
+    margin:0;   
+    text-align: start;
+    font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 50px;
+line-height: 58px;
+/* identical to box height, or 116% */
+letter-spacing: -0.04em;
+color: #000000;
+}
+
+.aboutMe__job{
+    margin:18px 0 0;
+    text-align: start;
+    font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 20px;
+/* identical to box height, or 111% */
+color: #000000;
+mix-blend-mode: normal;
+}
+
+.aboutMe__about{
+    margin:26px 0 0;
+    text-align: start;
+    font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 22px;
+/* or 157% */
+color: #000000;
+mix-blend-mode: normal;
+}
+
+.aboutMe__foto{
+    width: 270px;
+    height: 327px;
+}
+
+.aboutMe__socialLinks{
+    text-align: start;
+}
+
+.aboutMe__socialLink{
+     margin:0;    
+    padding-right: 20px;
+    font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+}
+
+.aboutMe__portfolio{
+    text-align: start;
+    list-style: none;
+    padding:0;
+}
+
+.aboutMe__subtitle{
+    font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 20px;
+/* identical to box height, or 111% */
+color: #A0A0A0;
+mix-blend-mode: normal;
+}
+
+.aboutMe__portfolio-site{
+    margin:20px 0 19px;   
+    border-bottom: 1px solid #E8E8E8;
+    display: flex;
+    justify-content: space-between;
+}
+.aboutMe__portfolio-siteDescription{
+    margin:0;
+    font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 50px;
+/* identical to box height, or 167% */
+letter-spacing: -0.04em;
+color: #000000;
+}
+.aboutMe__linkArrow{
+    margin:20px 0 0;
+}
