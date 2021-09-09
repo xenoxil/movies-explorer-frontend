@@ -1,5 +1,6 @@
 import React from 'react'
 import myFoto from '../../images/studentFoto.jpg'
+
 import linkArrow from '../../images/linkArrow.svg'
 
 function AboutMe() {
