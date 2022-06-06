@@ -18,11 +18,14 @@ function Header(props) {
               <Route path='/'>
               <header className='header'>
               <img src={HeaderLogo} className='header__logo' alt='Логотип проектной работы' />
+              {window.innerWidth>=1280 ?
                 <div className='header__container'>               
-                  <Link to='ya.ru' className='header__link link'>Фильмы</Link>
-                  <Link to='ya.ru' className='header__link link'>Сохранённые фильмы</Link>
+                  <Link to='/' className='header__link link'>Фильмы</Link>
+                  <Link to='/savedMovies' className='header__link link'>Сохранённые фильмы</Link>
                   <button className='header__accBtn'>Аккаунт</button>
                 </div>
+                : <button className='header__humburgerBtn'/>
+                }
                 </header>  
               </Route>
               </Switch>               

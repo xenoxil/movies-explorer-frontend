@@ -9,7 +9,7 @@ function AboutMe() {
             <h3 className='aboutMe__title'>Студент</h3>
             <div className='aboutMe__student'>
               <div className='aboutMe__container'>
-                <p className='aboutMe__name'>Юра</p>
+                <p className='aboutMe__name'>Юрий</p>
                 <p className='aboutMe__job'>Фронтенд-разработчик</p>
                 <p className='aboutMe__about'>Я из города Лыткарино. Закончил факультет информационных систем РосНОУ.Я люблю слушать музыку, а ещё увлекаюсь бегом и компьютерными играми. Недавно начал кодить. С 2018 года работаю в компании «Nielsen».
  Сейчас занимаюсь фриланс-заказами и помогаю студентам Яндекс Практикума.</p>

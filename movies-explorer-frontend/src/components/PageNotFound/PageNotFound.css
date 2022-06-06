@@ -1,0 +1,41 @@
+.pageNotFound{
+margin:0 auto;
+width:1280px;
+background: #FFFFFF;
+}
+
+.pageNotFound_error{
+    font-family: Inter;
+    font-size: 140px;
+    font-weight: 400;
+    line-height: 169px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin:246px 0 0 0;
+    
+}
+
+.pageNotFound_message{
+    margin:5px 0 184px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;    
+}
+
+
+.pageNotFound_return{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+    text-decoration: none;    
+}
+.pageNotFound_return:visited{
+    color:blue;
+}
+

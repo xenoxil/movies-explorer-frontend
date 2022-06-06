@@ -4,6 +4,12 @@
     
 }
 
+@media screen and (max-width: 1279px){
+    .navTab{
+    padding:24px 246px;
+    width:calc(768px - 246px*2);    
+}}
+
 
 
 .navTab__link{
@@ -12,12 +18,7 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    
-    
-    
-       
     text-decoration-line: underline;
-    
     color: #FFFFFF;
     margin-right: 40px;    
 }

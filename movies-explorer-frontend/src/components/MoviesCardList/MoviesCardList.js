@@ -9,7 +9,7 @@ function MoviesCardList(props) {
         <ul className='moviesCardList'>
             {
              props.movieCards.map((item)=>{
-                 return <MoviesCard cardPic={item.src} name={item.name} movieName={item.movieName} duration={item.duration}/>
+                 return <MoviesCard cardPic={item.src} name={item.name} movieName={item.movieName} duration={item.duration} key={item.key}/>
              })
             }
         </ul>                

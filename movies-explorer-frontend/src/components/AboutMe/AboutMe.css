@@ -4,6 +4,14 @@
     padding: 0 70px;
 }
 
+@media screen  and (max-width:1279px){
+    .aboutMe{   
+        background-color: #FFFFFF;
+        width:668px;
+        padding: 0 50px;
+    } 
+}
+
 .aboutMe__title{
     width:1140px;
     text-align: start;
@@ -18,6 +26,13 @@ line-height: 27px;
 /* identical to box height */
 letter-spacing: -0.04em;
 color: #000000;    
+}
+
+@media screen  and (max-width:1279px){
+    .aboutMe__title{
+        width:668px;
+        padding:90px 0 23px;
+    }
 }
 
 .aboutMe__student{
@@ -40,6 +55,12 @@ line-height: 58px;
 letter-spacing: -0.04em;
 color: #000000;
 }
+@media screen  and (max-width:1279px){
+    .aboutMe__name{         
+    font-size: 40px;
+    line-height: 40px; 
+    }
+}
 
 .aboutMe__job{
     margin:18px 0 0;
@@ -52,6 +73,16 @@ line-height: 20px;
 /* identical to box height, or 111% */
 color: #000000;
 mix-blend-mode: normal;
+}
+
+@media screen  and (max-width:1279px){
+    .aboutMe__job{
+        margin:16px 0 0;        
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    }
 }
 
 .aboutMe__about{
@@ -67,14 +98,32 @@ color: #000000;
 mix-blend-mode: normal;
 }
 
+@media screen  and (max-width:1279px){
+    .aboutMe__about{
+        margin:20px 0 0;
+        width:364px;    
+    font-size: 12px;
+    line-height: 18px;    
+    }
+}
+
 .aboutMe__foto{
-    width: 270px;
-    height: 327px;
+    width: 255px;
+    height: 307px;
+}
+
+@media screen  and (max-width:1279px){
+    .aboutMe__foto{
+        width: 270px;
+        height: 327px;
+    }
 }
 
 .aboutMe__socialLinks{
     text-align: start;
 }
+
+
 
 .aboutMe__socialLink{
      margin:0;    
@@ -92,6 +141,12 @@ line-height: 17px;
     padding:0;
 }
 
+@media screen  and (max-width:1279px){
+    .aboutMe__portfolio{
+       margin:90px 0 0; 
+    }
+}
+
 .aboutMe__subtitle{
     font-family: Inter;
 font-style: normal;
@@ -103,6 +158,12 @@ color: #A0A0A0;
 mix-blend-mode: normal;
 }
 
+@media screen  and (max-width:1279px){
+    .aboutMe__subtitle{
+    margin:0 0 50px;
+    }
+}
+
 .aboutMe__portfolio-site{
     margin:20px 0 19px;   
     border-bottom: 1px solid #E8E8E8;
@@ -111,7 +172,7 @@ mix-blend-mode: normal;
 }
 .aboutMe__portfolio-siteDescription{
     margin:0;
-    font-family: Inter;
+    font-family: Inter,Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: normal;
 font-size: 30px;
@@ -120,6 +181,12 @@ line-height: 50px;
 letter-spacing: -0.04em;
 color: #000000;
 }
+@media screen  and (max-width:1279px){
+    .aboutMe__portfolio-siteDescription{    
+    font-size: 28px;
+    }
+}
+
 .aboutMe__linkArrow{
     margin:20px 0 0;
 }
