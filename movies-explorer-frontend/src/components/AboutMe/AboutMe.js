@@ -18,7 +18,7 @@ function AboutMe() {
             </div>
             <div className='aboutMe__socialLinks'>
                 <a className='aboutMe__socialLink link' href='https://www.facebook.com'>Facebook</a>
-                <a className='aboutMe__socialLink link' href='https://github.com/'>Github</a>
+                <a className='aboutMe__socialLink link' href='https://github.com/xenoxil'>Github</a>
             </div>
           <ul className='aboutMe__portfolio'>
               <p className='aboutMe__subtitle'>Портфолио</p>

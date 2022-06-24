@@ -2,7 +2,7 @@
     background-color: #073042;
     min-height:524px;
     position:relative;
-    justify-content: center;
+    justify-content: center;    
 }
 @media screen and (max-width:1279px) {
     .promo {
@@ -14,8 +14,8 @@
 .promo__logo{
     position: absolute;
     height: 320px;
-width: 319.9964294433594px;
-left: 224px;
+width: 320px;
+left: 480px;
 top: 82px;
 border-radius: 0px;
 }

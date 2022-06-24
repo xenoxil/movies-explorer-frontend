@@ -1,10 +1,12 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import HeaderLogo from '../../images/header-logo.svg'
 import {Link,Route,Switch} from 'react-router-dom'
     
 
 function Header(props) {
-    return (        
+  const[screenWidth,setScreenWidth]=useState(window.innerWidth)
+  console.log(screenWidth);
+    return (              
             <Switch>
               <Route path='/landing'>
               <header className='header header_landingColor'>
@@ -18,7 +20,10 @@ function Header(props) {
               <Route path='/'>
               <header className='header'>
               <img src={HeaderLogo} className='header__logo' alt='Логотип проектной работы' />
-              {window.innerWidth>=1280 ?
+              {(()=>{setScreenWidth(window.innerWidth);
+              if(screenWidth>=1280){return true;}
+              else return false
+             }) ?
                 <div className='header__container'>               
                   <Link to='/' className='header__link link'>Фильмы</Link>
                   <Link to='/savedMovies' className='header__link link'>Сохранённые фильмы</Link>

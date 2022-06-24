@@ -1,6 +1,6 @@
 .searchSection{
     justify-content: center;
-    margin:70px 70px 10px;
+    margin:70px auto 10px;
     width: 1140px;
 
 }
@@ -12,6 +12,7 @@
     background: #FDFDFD;
 box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
 border-radius: 9px;
+
 }
 .searchForm__loupePic{
     margin: 19px 10px 19px 19px;
