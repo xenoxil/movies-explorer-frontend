@@ -1,3 +1,4 @@
+@import url(./vendor/fonts.css);
 @import url('./components/Header/Header.css');
 @import url('./components/Promo/Promo.css');
 @import url('./components/NavTab/NavTab.css');
@@ -17,7 +18,7 @@
 @import url('./components/PageNotFound/PageNotFound.css');
 
 body {
-  padding: 0 auto;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

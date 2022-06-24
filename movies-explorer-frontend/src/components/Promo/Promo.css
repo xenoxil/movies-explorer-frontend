@@ -36,7 +36,7 @@ border-radius: 0px;
 .promo__text{ 
     margin:0;
     padding:184px 275px 224px;
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 50px;
@@ -50,7 +50,7 @@ width: 730px;
 @media screen and (max-width:1279px) {
     .promo__text{ 
         padding:326px 9px 342px;
-        font-family: 'Inter';
+        font-family: Inter, Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 50px;

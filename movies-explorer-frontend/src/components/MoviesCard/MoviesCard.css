@@ -14,7 +14,7 @@
 
 .moviesCard__name{
     margin:0;
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
 font-size: 13px;
@@ -41,7 +41,7 @@ align-self: center;
     padding-top:6px;
     text-align: start;
     border-top:1px solid #E8E8E8;
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: normal;
 font-size: 11px;

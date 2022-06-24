@@ -14,7 +14,7 @@
 .login__greetings{
     margin:40px 0;
     text-align: start;
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
 font-size: 24px;
@@ -29,7 +29,7 @@ color: #000000;
 }
 .login__formText{
     margin:0;
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -40,7 +40,7 @@ color: #000000;
 
 .login__input{
     width:100%;
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
 font-size: 14px;
@@ -58,7 +58,7 @@ border-bottom: 1px solid #E8E8E8;
     width:100%;
     height:45px;
     background-color: #3456F3;
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
 font-size: 14px;
@@ -71,7 +71,7 @@ border-radius: 3px;
 }
 
 .login__register{
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -82,7 +82,7 @@ border-radius: 3px;
 }
 
 .login__registerLink{
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: normal;
 font-size: 14px;
