@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import HeaderLogo from '../../images/header-logo.svg'
 import {Link,Route,Switch} from 'react-router-dom'
 import Menu from '../Menu/Menu';
@@ -6,12 +6,7 @@ import Menu from '../Menu/Menu';
 
 function Header(props) {
   const[isMenuOpen,setMenuState]=useState(false);
-  const[screenWidth,setScreenWidth]=useState(window.innerWidth)
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setScreenWidth(window.innerWidth);     
-    });
-  }, [])  
+  
     return (              
             <Switch>
               <Route path='/landing'>
@@ -26,7 +21,7 @@ function Header(props) {
               <Route path='/'>
               <header className='header'>
               <img src={HeaderLogo} className='header__logo' alt='Логотип проектной работы' />
-              {screenWidth>=1280
+              {props.onSize>=1280
               ? (<div className='header__container'>               
               <Link to='/' className='header__link link'>Фильмы</Link>
               <Link to='/savedMovies' className='header__link link'>Сохранённые фильмы</Link>

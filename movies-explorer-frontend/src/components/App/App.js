@@ -7,8 +7,15 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import {Route,Switch} from 'react-router-dom'
+import React,{useState,useEffect} from 'react'
 
 function App() {
+  const[screenWidth,setScreenWidth]=useState(window.innerWidth)
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setScreenWidth(window.innerWidth);     
+    });
+  }, [])  
   return (
     <div className="App">
       <Switch>
@@ -16,7 +23,7 @@ function App() {
         <Landing/>
         </Route>
         <Route path='/savedMovies'>
-        <SavedMovies/>
+        <SavedMovies onSize={screenWidth}/>
         </Route>
         <Route path='/profile'>
         <Profile name={'Юрий'}/>
@@ -31,7 +38,7 @@ function App() {
         <PageNotFound/>
         </Route>
         <Route path='/'>
-        <Main/>
+        <Main onSize={screenWidth}/>
         </Route>        
         </Switch>
       </div>

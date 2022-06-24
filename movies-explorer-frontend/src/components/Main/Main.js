@@ -7,12 +7,12 @@ import MoreMovies from '../moreMovies/moreMovies';
 import React from 'react';
 
 
-function Main() {
+function Main(props) {
  
     return (
       <div className="main">
-        <Header className='main__header' />
-        <SearchForm/>
+        <Header className='main__header' onSize={props.onSize}/>
+        <SearchForm onSize={props.onSize}/>
         <MoviesCardList movieCards={movieCards}/>
         <MoreMovies/>        
         <Footer/>   
