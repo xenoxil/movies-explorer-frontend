@@ -11,6 +11,13 @@
     }    
 }
 
+@media screen and (max-width:767px) {
+    .promo {
+      width: 320px;
+      min-height:570px; 
+    }    
+}
+
 .promo__logo{
     position: absolute;
     height: 320px;
@@ -31,6 +38,17 @@ border-radius: 0px;
     right:224px;
 }
 }
+@media screen and (max-width:767px) {
+    .promo__logo {
+        width:248px;
+        height:248px;
+        position: absolute;
+        left: 11.25%;
+        right: 11.25%;
+        top: 30.42%;
+        bottom: 34.65%;
+    }    
+}
 
 
 .promo__text{ 
@@ -49,13 +67,15 @@ width: 730px;
 }
 @media screen and (max-width:1279px) {
     .promo__text{ 
-        padding:326px 9px 342px;
-        font-family: Inter, Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 50px;
-    line-height: 58px;
-    letter-spacing: -0.04em;
-    border:0px;
-    color: #FFFFFF;    
+        padding:326px 9px 342px;          
     }}
+
+    @media screen and (max-width:767px) {
+        .promo__text{ 
+            padding:207px auto 246px;            
+        font-size: 31px;
+        line-height: 39px;
+        width:100%;
+           
+        }}
+    

@@ -10,6 +10,13 @@
     width:calc(768px - 246px*2);    
 }}
 
+@media screen and (max-width:767px) {
+    .navTab{
+        width:214px;
+        padding:25px 53px;              
+    }
+}
+
 
 
 .navTab__link{
@@ -21,6 +28,13 @@
     text-decoration-line: underline;
     color: #FFFFFF;
     margin-right: 40px;    
+}
+
+@media screen and (max-width:767px) {
+    .navTab__link{        
+        font-size: 11px;        
+        margin-right: 24px;    
+    }
 }
 
 .navTab__link:last-of-type{

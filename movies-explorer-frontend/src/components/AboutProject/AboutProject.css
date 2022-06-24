@@ -12,6 +12,16 @@
         padding: 0 50px;
     }}
 
+    @media screen and (max-width:767px) {
+        .aboutProject{ 
+            width: 284px;
+            padding: 0 18px;
+            margin:0;            
+        }
+    }
+
+    
+
 .aboutProject__title{
     width:1140px;
     text-align: start;
@@ -36,6 +46,17 @@ color: #000000;
         padding:90px 0 23px;
     }}
 
+    @media screen and (max-width:767px) {
+        .aboutProject__title{
+            width:284px;            
+            padding:70px 0 28px;
+            border-bottom: 1px solid #000000;            
+        font-size: 18px;
+        line-height: 22px;        
+        }
+    }
+
+
 .aboutProject__step-title{
 margin:70px 0 0;
 text-align: start;
@@ -48,10 +69,23 @@ letter-spacing: -0.04em;
 
 color: #000000;
 }
+
+@media screen and (max-width:767px) {
+    .aboutProject__step-title{
+        margin:60px 0 0;        
+        font-size: 18px;
+        line-height: 22px;      
+        }
+}
 .aboutProject__steps{
 display: flex;
 justify-content: space-between;
 }
+
+@media screen and (max-width: 767px){
+    .aboutProject__steps{
+        display: block;        
+        }}
 
 .aboutProject__step-description{
 margin:26px 0 0;
@@ -64,6 +98,15 @@ line-height: 20px;
 color: #000000;
 }
 
+@media screen and (max-width:767px) {
+    .aboutProject__step-description{
+        margin:16px 0 0;        
+        font-size: 11px;
+        line-height: 16px;
+        
+        }
+}
+
 .aboutProject__progressRow{    
     display:flex;
     margin:03px 0 121px;
@@ -73,12 +116,27 @@ color: #000000;
         
         margin:119px 0 93px;
     }}
+
+    @media screen and (max-width:767px) {
+        .aboutProject__progressRow{
+            margin:60px 0 93px;
+        }}
+   
 .aboutProject__backend{
     width:228px;    
 }
+@media screen and (max-width:767px) {
+    .aboutProject__backend{
+        width:100px;    
+    }}
 .aboutProject__frontend{
     width:912px;    
 }
+
+@media screen and (max-width:767px) {
+    .aboutProject__frontend{
+        width:184px;    
+    }}
 
 
 
@@ -106,6 +164,11 @@ margin:0;
     background-color: #F2F2F2;
     padding: 9px 356px;    
 }
+
+@media screen and (max-width:767px) {
+    .aboutProject__progress-frontend{      
+        padding: 11px 53px;    
+    }}
 
 @media screen and (max-width: 1279px){
     .aboutProject__progress-frontend{        
