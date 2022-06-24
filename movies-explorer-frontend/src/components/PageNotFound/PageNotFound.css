@@ -1,6 +1,6 @@
 .pageNotFound{
 margin:0 auto;
-width:1280px;
+max-width:1280px;
 background: #FFFFFF;
 }
 
@@ -14,6 +14,13 @@ background: #FFFFFF;
     margin:246px 0 0 0;
     
 }
+@media screen and (max-width:767px) {
+    .pageNotFound_error{       
+        font-size: 80px;        
+        line-height: 97px;       
+        margin:329px 0 0 0;        
+    }
+}
 
 .pageNotFound_message{
     margin:5px 0 184px;
@@ -23,6 +30,13 @@ background: #FFFFFF;
     line-height: 19px;
     letter-spacing: 0em;
     text-align: center;    
+}
+@media screen and (max-width:767px) {
+    .pageNotFound_message{
+        margin:10px 0 284px;        
+        font-size: 12px;        
+        line-height: 15px;        
+    }
 }
 
 
@@ -34,6 +48,13 @@ background: #FFFFFF;
     letter-spacing: 0em;
     text-align: center;
     text-decoration: none;    
+}
+
+@media screen and (max-width:767px) {
+    .pageNotFound_return{        
+        font-size: 12px;        
+        line-height: 15px;         
+    }
 }
 .pageNotFound_return:visited{
     color:blue;

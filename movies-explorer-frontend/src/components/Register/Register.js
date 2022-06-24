@@ -5,8 +5,10 @@ function Register() {
     return (
       <div className="register">
         <img src={HeaderLogo} className='register__logo' alt='Логотип проектной работы' />
-        <p className='register__greetings'>Регистрация</p>
+        <h2 className='register__greetings'>Добро пожаловать!</h2>
         <form className='register__form'>
+        <p className='register__formText'>Имя</p>
+            <input className='register__input' />
             <p className='register__formText'>E-mail</p>
             <input className='register__input' />
             <p className='register__formText'>Пароль</p>
