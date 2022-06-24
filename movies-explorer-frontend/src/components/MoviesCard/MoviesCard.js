@@ -1,6 +1,7 @@
 import React from 'react'
-import likePic from '../../images/cardLikePic.png'
+import likePic from '../../images/cardLikePic.svg'
 import defaultPic from '../../images/defaultMovie.jpg'
+import unlikePic from '../../images/unlikePic.svg'
 
     
 
@@ -10,7 +11,7 @@ function MoviesCard(props) {
           <img src={props.cardPic ? props.cardPic :defaultPic } alt={props.name} className='moviesCard__pic'/>
           <div className='moviesCard__container'>
               <p className='moviesCard__name'>{props.movieName}</p>
-              <button className='moviesCard__likeBtn' aria-label='Кнопка лайк'><img className='moviesCard__likePic' src={likePic} alt='кнопка лайка'/></button>    
+              <button className='moviesCard__likeBtn' aria-label='Кнопка лайк'><img className='moviesCard__likePic' src={props.isLiked ? likePic : unlikePic} alt='кнопка лайка'/></button>    
           </div>
           <p className='moviesCard__duration'>{props.duration}</p>
         </li>                
