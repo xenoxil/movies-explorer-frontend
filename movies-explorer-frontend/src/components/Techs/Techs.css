@@ -11,6 +11,14 @@
         padding:0 50px;   
     }}
 
+    @media screen and (max-width:767px) {
+        .techs{        
+            width:284px; 
+            padding:0 18px;  
+            background-color:#FFFFFF; 
+        }
+    }
+
 .techs__title{
     width:1140px;
     text-align: start;
@@ -35,6 +43,14 @@ color: #000000;
         padding:90px 0 23px;    
     }}
 
+    @media screen and (max-width:767px) {
+        .techs__title{
+            width:284px;
+            padding:90px 0 23px; 
+            font-size: 18px;
+            line-height: 22px;
+        }}
+
 .techs__subtitle{
     margin:90px auto 0;
     font-family: Inter, Arial, Helvetica, sans-serif;
@@ -49,6 +65,13 @@ letter-spacing: -0.04em;
 
 color: #000000;
 }
+
+@media screen and (max-width:767px) {
+    .techs__subtitle{
+        margin:60px auto 0;        
+    font-size: 30px;
+    line-height: 36px;
+    }}
 
 .techs__text{
     width: 460px;
@@ -71,13 +94,30 @@ line-height: 18px;
 margin:22px auto 0;
 }}
 
+@media screen and (max-width:767px) {
+    .techs__text{
+        width: 292px;
+        margin:24px auto 0;    
+    font-size: 11px;
+    line-height: 16px;
+    }}
+
 .techs__list{
     display: flex;
    list-style: none;
    justify-content: center;
-   margin:83px 0  90px;
+   margin:83px 0  70px;
    padding:0;  
 }
+@media screen and (max-width:767px) {
+    .techs__list{       
+       margin: 40px auto  90px;
+       flex-wrap: wrap;   
+       justify-content: left; 
+       width:190px;    
+    }}
+
+
 
 .techs__technology{
     margin:0;
@@ -103,6 +143,12 @@ color: #000000;
     font-size: 12px;
     line-height:15px;      
     }}
+
+    @media screen and (max-width:767px) {
+        .techs__technology{
+            margin:10px 10px 0 0; 
+        }}
+    
 
 .techs__technology:last-child{
     margin-right: 0;

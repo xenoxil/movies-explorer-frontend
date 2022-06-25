@@ -159,21 +159,27 @@ margin:0;
     .aboutProject__progress-backend{        
         padding: 9px 13px;    
     }}
+    @media screen and (max-width: 767px){
+        .aboutProject__progress-backend{        
+            padding:11px 10px;    
+        }}
 
 .aboutProject__progress-frontend{
     background-color: #F2F2F2;
     padding: 9px 356px;    
 }
 
-@media screen and (max-width:767px) {
-    .aboutProject__progress-frontend{      
-        padding: 11px 53px;    
-    }}
+
 
 @media screen and (max-width: 1279px){
     .aboutProject__progress-frontend{        
         padding: 9px 202px;    
     }}
+
+    @media screen and (max-width:767px) {
+        .aboutProject__progress-frontend{      
+            padding: 11px 53px;    
+        }}
 
 .aboutProject__progress-title{
     font-family: Inter, Arial, Helvetica, sans-serif;

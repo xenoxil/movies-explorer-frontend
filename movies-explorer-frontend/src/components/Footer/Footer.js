@@ -10,18 +10,18 @@ function Footer(props) {
               <p className="footer__copyright">&copy;2022.Юрий Степанов</p>
               <nav className='footer__navigation'>
                  <ul className='footer__links'>
-                     <li className='footer__link'><a href='https://practicum.yandex.ru/' className='link' >Яндекс.Практикум</a></li>
-                     <li className='footer__link'><a href='https://github.com/xenoxil' className='link'>Github</a></li>
-                     <li className='footer__link'><a href='https://www.facebook.com' className='link'>Facebook</a></li> 
+                     <li className='footer__link'><a href='https://practicum.yandex.ru/'  target="_blank" rel='nofollow noopener noreferrer'  className='link' >Яндекс.Практикум</a></li>
+                     <li className='footer__link'><a href='https://github.com/xenoxil' target="_blank" rel='nofollow noopener noreferrer'  className='link'>Github</a></li>
+                     <li className='footer__link'><a href='https://www.facebook.com' target="_blank" rel='nofollow noopener noreferrer'  className='link'>Facebook</a></li> 
                  </ul>
               </nav>
             </div>)
             : (<div className='footer__container'>            
             <nav className='footer__navigation'>
                <ul className='footer__links'>
-                   <li className='footer__link'><a href='https://practicum.yandex.ru/' className='link' >Яндекс.Практикум</a></li>
-                   <li className='footer__link'><a href='https://github.com/xenoxil' className='link'>Github</a></li>
-                   <li className='footer__link'><a href='https://www.facebook.com' className='link'>Facebook</a></li> 
+                   <li className='footer__link'><a href='https://practicum.yandex.ru/' target="_blank" rel='nofollow noopener noreferrer'  className='link' >Яндекс.Практикум</a></li>
+                   <li className='footer__link'><a href='https://github.com/xenoxil' target="_blank" rel='nofollow noopener noreferrer'  className='link'>Github</a></li>
+                   <li className='footer__link'><a href='https://www.facebook.com' target="_blank" rel='nofollow noopener noreferrer'  className='link'>Facebook</a></li> 
                </ul>
             </nav>
             <p className="footer__copyright">&copy;2022</p>

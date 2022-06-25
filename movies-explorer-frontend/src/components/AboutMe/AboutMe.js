@@ -17,22 +17,22 @@ function AboutMe() {
               <img className='aboutMe__foto' alt='Фото студента практикума' src={myFoto}/>
             </div>
             <div className='aboutMe__socialLinks'>
-                <a className='aboutMe__socialLink link' href='https://www.facebook.com'>Facebook</a>
-                <a className='aboutMe__socialLink link' href='https://github.com/xenoxil'>Github</a>
+                <a className='aboutMe__socialLink link' target="_blank" rel='nofollow noopener noreferrer'  href='https://www.facebook.com'>Facebook</a>
+                <a className='aboutMe__socialLink link' target="_blank" rel='nofollow noopener noreferrer'  href='https://github.com/xenoxil'>Github</a>
             </div>
           <ul className='aboutMe__portfolio'>
               <p className='aboutMe__subtitle'>Портфолио</p>
               <li className='aboutMe__portfolio-site'>
                   <p className='aboutMe__portfolio-siteDescription'>Статичный сайт</p>
-                  <a className='aboutMe__portfolio-siteLink' href='https://www.facebook.com'><img src={linkArrow} alt='Ссылка на сайт' className='aboutMe__linkArrow'/></a>
+                  <a className='aboutMe__portfolio-siteLink' target="_blank" rel='nofollow noopener noreferrer'  href='https://www.facebook.com'><img src={linkArrow} alt='Ссылка на сайт' className='aboutMe__linkArrow'/></a>
               </li>
               <li className='aboutMe__portfolio-site'>
                   <p className='aboutMe__portfolio-siteDescription'>Адаптивный сайт</p>
-                  <a className='aboutMe__portfolio-siteLink' href='https://www.facebook.com'><img src={linkArrow} alt='Ссылка на сайт' className='aboutMe__linkArrow'/></a>
+                  <a className='aboutMe__portfolio-siteLink' target="_blank" rel='nofollow noopener noreferrer'  href='https://www.facebook.com'><img src={linkArrow} alt='Ссылка на сайт' className='aboutMe__linkArrow'/></a>
               </li>
               <li className='aboutMe__portfolio-site'>
                   <p className='aboutMe__portfolio-siteDescription'>Одностраничное приложение</p>
-                  <a className='aboutMe__portfolio-siteLink' href='https://www.facebook.com'><img src={linkArrow} alt='Ссылка на сайт' className='aboutMe__linkArrow'/></a>
+                  <a className='aboutMe__portfolio-siteLink' target="_blank" rel='nofollow noopener noreferrer' href='https://www.facebook.com'><img src={linkArrow} alt='Ссылка на сайт' className='aboutMe__linkArrow'/></a>
               </li>
           </ul>
         </section>        
