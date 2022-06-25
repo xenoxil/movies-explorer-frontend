@@ -1,10 +1,21 @@
 .moviesCard{
     width:270px;
 }
+
+@media screen and (max-width:767px) {
+    .moviesCard{
+        width:300px;
+    }}
 .moviesCard__pic{
     width:270px;
     height:151px;
 }
+
+@media screen and (max-width:767px) {
+    .moviesCard__pic{
+        width:300px;
+        height:168px;
+    }}
 
 .moviesCard__container{
     display:flex;

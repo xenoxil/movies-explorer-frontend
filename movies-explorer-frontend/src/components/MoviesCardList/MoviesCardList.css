@@ -7,7 +7,7 @@
     grid-template-columns: repeat(4, 270px);
     row-gap: 57px;
     column-gap: 20px;
-    justify-content: center;    
+    justify-content: center;
 }
 
 
@@ -18,10 +18,12 @@
     }}
 
     @media screen and (max-width:767px) {
-        .moviesCardList{
+        .moviesCardList{            
             margin:0 auto;            
             grid-template-rows: 5;
-            grid-template-columns: repeat(1, 300px);
+            grid-template-columns: repeat(1, 290px);
             row-gap: 34px;
+            column-gap: 0;
+            margin:70px auto 0;
                
         }}
