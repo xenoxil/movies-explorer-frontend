@@ -11,7 +11,7 @@
 }
 @media screen and (max-width:767px) {
     .header{
-        width:292px;
+        width:280px;
         padding: 18px 14px;               
     }
 }
@@ -82,6 +82,7 @@ font-style: normal;
 font-weight: 500;
 font-size: 14px;
 line-height: 16px;
+text-decoration: none;
 }
 
 .header__humburgerBtn{
