@@ -70,12 +70,11 @@ width: 730px;
         padding:326px 9px 342px;          
     }}
 
-    @media screen and (max-width:767px) {
+@media screen and (max-width:767px) {
         .promo__text{ 
-            padding:207px auto 246px;            
+        padding:207px 0 246px;            
         font-size: 31px;
         line-height: 39px;
         width:100%;
-           
-        }}
+    }}
     

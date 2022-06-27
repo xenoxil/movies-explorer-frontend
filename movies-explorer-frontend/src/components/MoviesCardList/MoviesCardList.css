@@ -21,9 +21,10 @@
         .moviesCardList{            
             margin:0 auto;            
             grid-template-rows: 5;
-            grid-template-columns: repeat(1, 290px);
+            grid-template-columns: repeat(1, 300px);
             row-gap: 34px;
             column-gap: 0;
             margin:70px auto 0;
+            max-width: 300px;
                
         }}

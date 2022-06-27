@@ -15,8 +15,7 @@
     @media screen and (max-width:767px) {
         .aboutProject{ 
             width: 284px;
-            padding: 0 18px;
-            margin:0;            
+            padding: 0; 
         }
     }
 
