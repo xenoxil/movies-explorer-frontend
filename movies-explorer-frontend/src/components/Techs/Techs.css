@@ -1,20 +1,19 @@
 .techs{
     background-color: #F5F5F5;
     width:1140px;
-    padding: 0 70px;
+    padding: 0;
     margin:0 auto;
 }
 
 @media screen and (max-width: 1279px){
     .techs{        
         width:668px; 
-        padding:0 50px;   
+        
     }}
 
     @media screen and (max-width:767px) {
         .techs{        
-            width:284px; 
-            padding:0;  
+            width:284px;             
             background-color:#FFFFFF;             
         }
     }

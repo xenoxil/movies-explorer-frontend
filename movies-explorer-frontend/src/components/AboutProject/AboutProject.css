@@ -1,7 +1,7 @@
 .aboutProject{   
     background-color: #FFFFFF;
     width:1140px;
-    padding: 0 58px;
+    padding: 0;
     margin:0 auto;
 }
 
@@ -9,13 +9,13 @@
     .aboutProject{   
         background-color: #FFFFFF;
         width:668px;
-        padding: 0 50px;
+        
     }}
 
     @media screen and (max-width:767px) {
         .aboutProject{ 
             width: 284px;
-            padding: 0; 
+            
         }
     }
 

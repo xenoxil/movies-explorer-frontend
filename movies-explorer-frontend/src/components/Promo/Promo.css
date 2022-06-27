@@ -2,7 +2,9 @@
     background-color: #073042;
     min-height:524px;
     position:relative;
-    justify-content: center;    
+    justify-content: center;
+    width:100%;
+    max-width: 1280px;    
 }
 @media screen and (max-width:1279px) {
     .promo {
@@ -12,8 +14,7 @@
 }
 
 @media screen and (max-width:767px) {
-    .promo {
-        width:100%;
+    .promo {        
         max-width:320px;
       min-height:570px; 
     }    
