@@ -27,7 +27,9 @@ function Header(props) {
               <Link to='/savedMovies' className='header__link link'>Сохранённые фильмы</Link>
               <Link to='/profile' className='header__accBtn' >Аккаунт</Link>
             </div>)
-            :  (<button className='header__humburgerBtn' onClick={()=>setMenuState(true)}/>
+            :  (<div className='header__container'>
+                  <button className='header__humburgerBtn' onClick={()=>setMenuState(true)}/>
+                </div>
             )
           }   
           <Menu isVisible={isMenuOpen} onCloseClick={()=>setMenuState(false)}/>              

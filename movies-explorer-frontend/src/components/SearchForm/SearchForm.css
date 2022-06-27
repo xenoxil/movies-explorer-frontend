@@ -32,6 +32,8 @@ flex-wrap: wrap;
 
 }
 
+
+
 .searchForm__loupePic{
     margin: 25px 25px 0 25px;
     width:22px;
@@ -58,6 +60,8 @@ line-height: 20px;
 color: #A0A0A0;
 }
 
+
+
 @media screen and (max-width:1279px) {
     .searchForm__input{ 
             min-width:377px;
@@ -83,9 +87,7 @@ color: #A0A0A0;
     line-height: 20px;
     }    }
 
-.searchForm__input:focus{
-   outline: 0;
-}
+
 
 .searchForm__searchBtn{    
     margin:19px 0;    
