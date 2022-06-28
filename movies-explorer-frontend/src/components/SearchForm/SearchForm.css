@@ -78,11 +78,8 @@ color: #A0A0A0;
 
 @media screen and (max-width:767px) {
     .searchForm__input{ 
-        min-width:247px;
-        padding-left:19px;        
-        font-family: Inter, Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: normal;
+        min-width:228px;
+        padding-left:19px;
     font-size: 14px;
     line-height: 20px;
     }    }
@@ -103,6 +100,7 @@ color: #A0A0A0;
 @media screen and (max-width:767px) {
     .searchForm__searchBtn{ 
         padding-right: 0;
+        margin-right:19px;
         border-right: 0;    
     }
 }

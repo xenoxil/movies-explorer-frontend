@@ -7,7 +7,7 @@ import AboutMe from '../AboutMe/AboutMe';
 import Footer from '../Footer/Footer';
 
 
-function Landing() {
+function Landing(props) {
     return (
       <div className="App">
         <Header/>
@@ -15,7 +15,7 @@ function Landing() {
         <NavTab/>   
         <AboutProject />
         <Techs id='techs'/>
-        <AboutMe id='student'/>
+        <AboutMe id='student' onSize={props.onSize}/>
         <Footer/>   
       </div>
     );
