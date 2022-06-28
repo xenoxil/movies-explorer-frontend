@@ -12,7 +12,7 @@ function Main(props) {
     return (
       <div className="main">
         <Header className='main__header' onSize={props.onSize}/>
-        <SearchForm onSize={props.onSize}/>
+        <SearchForm onSize={props.onSize} isSwitched={true}/>
         <MoviesCardList movieCards={movieCards}/>
         <MoreMovies/>        
         <Footer/>   

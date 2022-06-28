@@ -16,6 +16,12 @@
     height:151px;
 }
 
+@media screen and (max-width:1279px) {
+    .moviesCard__pic{
+        width:339px;
+        height:190px;
+    }}
+
 @media screen and (max-width:767px) {
     .moviesCard__pic{
         width:300px;

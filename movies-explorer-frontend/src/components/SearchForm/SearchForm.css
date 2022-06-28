@@ -121,6 +121,11 @@ color: #A0A0A0;
     }
 }
 
+.searchForm__movieTypeShort{
+    background-image: url('../../images/movieTypeShort.svg');
+    background-size: cover;
+}
+
 
 .searchForm__movieType{
 margin:27px 30px 27px 0;
