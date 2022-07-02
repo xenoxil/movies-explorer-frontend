@@ -1,11 +1,10 @@
 import React from 'react'
-import myFoto from '../../images/studentFoto.jpg'
+import myFoto from '../../images/studentFoto.png'
 
 import linkArrow from '../../images/linkArrow.svg'
 
 
-function AboutMe(props) {
-  console.log(props.onSize)
+function AboutMe(props) {  
     return (
         <section className='aboutMe' id='student'>
             <h3 className='aboutMe__title'>Студент</h3>
