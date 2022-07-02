@@ -3,8 +3,7 @@ import loupePic from '../../images/loupePic.svg'
 import searchBtn from '../../images/searchBtn.svg'
     
 
-function SearchForm(props) {
-  console.log(props.isSwitched)
+function SearchForm(props) {  
     return (
       <section className='searchSection'>
         { props.onSize>=768 

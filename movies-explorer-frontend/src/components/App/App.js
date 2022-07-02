@@ -7,10 +7,11 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import {Route,Switch} from 'react-router-dom'
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useHistory} from 'react'
 import {FormValidator} from '../FormValidator'
 import {config} from '../../utils/constants'
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
     email: "pochta@ya.ru"  
   });
 
+  const [loggedInState, setLoggedInState] = React.useState(false);
+
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -33,24 +36,36 @@ function App() {
         <Route path='/landing'>
         <Landing onSize={screenWidth}/>
         </Route>
-        <Route path='/savedMovies'>
-        <SavedMovies onSize={screenWidth}/>
-        </Route>
-        <Route path='/profile'>
-        <Profile name={'Юрий'}/>
-        </Route>
+        <ProtectedRoute
+        component={SavedMovies}
+        loggedIn={loggedInState}
+        exact 
+         path='/saved-movies'
+         onSize={screenWidth}
+         />
+         <ProtectedRoute
+        component={Profile}
+        name={'Юрий'}
+        loggedIn={loggedInState}
+        exact 
+         path='/profile'         
+         />
         <Route path='/sign-in'>
         <Login/>
         </Route>
         <Route path='/sign-up'>
         <Register/>
-        </Route>
-        <Route path='/404'>
-        <PageNotFound/>
-        </Route>
-        <Route path='/'>
-        <Main onSize={screenWidth}/>
         </Route>        
+        <ProtectedRoute
+        component={Main}        
+        loggedIn={loggedInState}
+        exact 
+         path='/movies'
+         onSize={screenWidth}         
+         />
+         <Route path='/'>
+        <PageNotFound/>
+        </Route>                 
         </Switch>
         </CurrentUserContext.Provider>
       </div>
