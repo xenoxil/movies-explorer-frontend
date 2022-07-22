@@ -34,7 +34,8 @@ function Login(props) {
             id="loginEmail"               
             required
             minLength={2}
-            maxLength={40} />
+            maxLength={40}
+            autoComplete="off" />
             <span className="error" id="loginEmail-error" />
             <p className='login__formText'>Пароль</p>
             <input className='login__input'
@@ -43,7 +44,8 @@ function Login(props) {
             id="loginPassword"               
             required
             minLength={8}
-            maxLength={30}/>
+            maxLength={30}
+            autoComplete="off"/>
             <span className="error" id="loginPassword-error" />
             <button className='login__button' type='submit' onClick={handleSubmit}>Войти</button>
         </form>

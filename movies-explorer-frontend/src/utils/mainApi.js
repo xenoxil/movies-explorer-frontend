@@ -8,7 +8,7 @@ export class mainApi {
     
     //получаем данные профайла
     getProfile() {
-        return fetch(`${this._options.baseUrl}/me`, {
+        return fetch(`${this._options.baseUrl}/users/me`, {
             headers: this._options.headers,
             'credentials': 'include',
         })
@@ -26,7 +26,7 @@ export class mainApi {
 
     //патчим профайл на сервере
     editProfile(newName, newEmail) {
-        return fetch(`${this._options.baseUrl}/me`, {
+        return fetch(`${this._options.baseUrl}/users`, {
             method: 'PATCH',
             'credentials': 'include',
             headers: this._options.headers,

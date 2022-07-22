@@ -15,6 +15,9 @@ import userApi from '../../utils/mainApi';
 
 
 function App() {
+
+
+
   const[screenWidth,setScreenWidth]=useState(window.innerWidth)
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -29,15 +32,38 @@ function App() {
 
   const [loggedInState, setLoggedInState] = React.useState(false);
   const history = useHistory();
-  const [isAuthReqSuccess, SetIsAuthReqSuccess] = React.useState(false);
+
+  React.useEffect(() => {    
+    userApi
+      .getProfile()
+      .then((profileObj) => {
+        if(profileObj){
+        setLoggedInState(true);
+        setCurrentUser(profileObj);
+        
+        history.push("/movies");
+      }
+      else{
+        return Promise.reject('Необходима авторизация');
+      }
+      })           
+      .catch((err) => console.log("Ошибка:", err));      
+    }, []);
+  
 
 
   function handleRegisterClick(email, password,name) {
     auth
       .register(email, password,name)
       .then((response) => {
-        SetIsAuthReqSuccess(true);
-        history.push("/sign-in");
+        setLoggedInState(true);
+        history.push("/movies");
+      })
+      .then(()=>{
+        userApi.getProfile()
+        .then((profileObj) => {
+          setCurrentUser(profileObj);
+        })
       })
       .catch((err) => {
         if (err === "400") {
@@ -45,7 +71,7 @@ function App() {
         } else {
           console.log(`Ошибка:`, err);
         }
-        SetIsAuthReqSuccess(false);
+        setLoggedInState(false);
       })      
   }
 
@@ -73,6 +99,16 @@ function App() {
       });
   }
 
+  function handleLogoutClick(){
+    setLoggedInState(false);
+    auth.logout()
+    .catch((err) => {      
+        console.log(err);
+      }
+    );              
+  }  
+
+ 
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -88,16 +124,16 @@ function App() {
          onSize={screenWidth}
          />
          <ProtectedRoute
-        component={Profile}
-        name={'Юрий'}
+        component={Profile}        
         loggedIn={loggedInState}
+        onLogoutClick={handleLogoutClick}        
         exact 
          path='/profile'         
          />
-        <Route path='/sign-in'>
+        <Route path='/signin'>
         <Login onLogin={handleLoginClick}/>
         </Route>
-        <Route path='/sign-up'>
+        <Route path='/signup'>
         <Register onRegisterClick={handleRegisterClick}/>
         </Route>        
         <ProtectedRoute

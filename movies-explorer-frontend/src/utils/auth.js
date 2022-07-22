@@ -46,7 +46,7 @@ export class Auth {
   }
 
   logout() {
-    return fetch(`${this._options.baseUrl}/`, {
+    return fetch(`${this._options.baseUrl}/signout`, {
       method: "delete",
       credentials: "include",
       headers: {

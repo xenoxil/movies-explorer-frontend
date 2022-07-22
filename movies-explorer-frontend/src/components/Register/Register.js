@@ -34,10 +34,12 @@ function handleSubmit(e) {
              required
              minLength={2}
              id="registerName"
+             autocomplete="off"
             />
             <span className="error" id="registerName-error" />
             <p className='register__formText'>E-mail</p>            
             <input className='register__input'
+            autocomplete="off"
               ref={email}
               type="email"
               id="registerEmail"               
@@ -47,6 +49,7 @@ function handleSubmit(e) {
             <span className="error" id="registerEmail-error" />
             <p className='register__formText'>Пароль</p> 
             <input className='register__input'
+            autocomplete="off"
             ref={password}
             required
             minLength={8}
