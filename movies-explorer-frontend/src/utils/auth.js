@@ -5,7 +5,7 @@ export class Auth {
     this._headers = this._options.headers;
   }
 
-  register(email, password) {
+  register(email, password,name) {
     return fetch(`${this._options.baseUrl}/signup`, {
       method: "POST",     
       headers: {
@@ -14,6 +14,7 @@ export class Auth {
       body: JSON.stringify({
         email,
         password,
+        name
       }),
     }).then((res) => {
       if (res.ok) {
@@ -64,8 +65,8 @@ export class Auth {
 }
 
 const auth = new Auth({
- //baseUrl: 'http://localhost:3001',
-  baseUrl: "https://api.xenoxil.mesto.nomoredomains.icu",
+ //baseUrl: 'http://localhost:3000',
+  baseUrl: "https://xenoxil.movie-explorer.nomoreparties.sbs",
   headers: {
     "Content-Type": "application/json",
   },

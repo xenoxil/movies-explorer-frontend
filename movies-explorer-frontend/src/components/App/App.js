@@ -6,12 +6,12 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import {Route,Switch} from 'react-router-dom'
-import React,{useState,useEffect,useHistory} from 'react'
-import {FormValidator} from '../FormValidator'
-import {config} from '../../utils/constants'
+import {Route,Switch,useHistory} from 'react-router-dom'
+import React,{useState,useEffect} from 'react'
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import auth from '../../utils/auth';
+import userApi from '../../utils/mainApi';
 
 
 function App() {
@@ -28,6 +28,50 @@ function App() {
   });
 
   const [loggedInState, setLoggedInState] = React.useState(false);
+  const history = useHistory();
+  const [isAuthReqSuccess, SetIsAuthReqSuccess] = React.useState(false);
+
+
+  function handleRegisterClick(email, password,name) {
+    auth
+      .register(email, password,name)
+      .then((response) => {
+        SetIsAuthReqSuccess(true);
+        history.push("/sign-in");
+      })
+      .catch((err) => {
+        if (err === "400") {
+          console.log("400 - некорректно заполнено одно из полей");
+        } else {
+          console.log(`Ошибка:`, err);
+        }
+        SetIsAuthReqSuccess(false);
+      })      
+  }
+
+  function handleLoginClick(email, password) {
+    auth
+      .login(email, password)
+      .then(() => {
+        setLoggedInState(true);        
+        history.push("/movies");
+      })
+      .then(()=>{
+        userApi.getProfile()
+        .then((profileObj) => {
+          setCurrentUser(profileObj);
+        })
+      })
+      .catch((err) => {
+        if (err === 401) {
+          console.log("401 - пользователь с email не найден");
+        } else if (err === 400) {
+          console.log("400 - не передано одно из полей ");
+        } else {
+          console.log(err);
+        }
+      });
+  }
 
   return (
     <div className="App">
@@ -51,10 +95,10 @@ function App() {
          path='/profile'         
          />
         <Route path='/sign-in'>
-        <Login/>
+        <Login onLogin={handleLoginClick}/>
         </Route>
         <Route path='/sign-up'>
-        <Register/>
+        <Register onRegisterClick={handleRegisterClick}/>
         </Route>        
         <ProtectedRoute
         component={Main}        

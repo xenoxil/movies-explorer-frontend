@@ -14,7 +14,7 @@ function Header(props) {
                 <img src={HeaderLogo} className='header__logo' alt='Логотип проектной работы' />
                 <div className='header__container'>               
                   <Link to='/sign-up' className='header__registration'>Регистрация</Link>
-                  <Link to='/sign-up' className='header__loginBtn'>Войти</Link>                  
+                  <Link to='/sign-in' className='header__loginBtn'>Войти</Link>                  
                 </div>
                 </header>
               </Route>
