@@ -61,17 +61,39 @@ function App() {
        if(!isSearched){
         moviesListApi.getMovies()
         .then((moviesArray)=>{
+          console.log(moviesArray)          
           setCards(moviesArray);
           setSearched(true)
-        })
+          setFiltered(moviesArray.filter((movieObj)=>{
+            console.log(movieObj)
+            if(movieObj.nameRU && movieObj.nameEN){
+              return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
+            }
+            else{
+              return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
+            }
+            
+          }))
+        })        
         .catch((err)=>{
          console.log(err)
         })
        }
-       //сохраняем массив отфильтрованных фильмов
-       setFiltered(cards.filter((movieObj)=>{
-        return (movieObj.nameRU.toLowerCase()===movie.toLowerCase() || movieObj.nameEN.toLowerCase()===movie.toLowerCase())
-      }))
+       else{
+        //сохраняем массив отфильтрованных фильмов
+        setFiltered(cards.filter((movieObj)=>{
+         console.log(movieObj)
+         if(movieObj.nameRU && movieObj.nameEN){
+           return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
+         }
+         else{
+           return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
+         }
+         
+       }))}
+       
+       
+      console.log(filteredArray)
     }
 
 

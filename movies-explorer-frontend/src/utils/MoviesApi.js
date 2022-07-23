@@ -9,8 +9,7 @@ export class movieApi {
     getMovies() {
         // ...
         return fetch(`${this._options.baseUrl}/`, {
-            headers: this._options.headers,
-            'credentials': 'include',
+            headers: this._options.headers,            
         })
             .then((res) => {
                 if (res.ok) {
