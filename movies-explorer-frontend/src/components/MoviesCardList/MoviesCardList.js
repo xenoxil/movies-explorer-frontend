@@ -5,14 +5,19 @@ import MoviesCard from '../MoviesCard/MoviesCard'
     
 
 function MoviesCardList(props) {
+    console.log(props.movieCards);
     return (
-        <ul className='moviesCardList'>
+        props.isSearched ?
+        (<ul className='moviesCardList'>
             {
              props.movieCards.map((item)=>{
-                 return <MoviesCard cardPic={item.src} name={item.name} movieName={item.movieName} duration={item.duration} key={item.key} isLiked={item.isLiked}/>
+                console.log(item);                
+                 return <MoviesCard cardPic={`https://api.nomoreparties.co/${item.image.formats.small.url}`} name={item.nameRU}
+                  movieName={item.nameRU} duration={item.duration} key={item.id} isLiked={item.isLiked}/>
              })
             }
-        </ul>                
+        </ul>)
+        : <ul></ul>                
     )
 }
 

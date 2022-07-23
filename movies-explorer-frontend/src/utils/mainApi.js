@@ -26,13 +26,13 @@ export class mainApi {
 
     //патчим профайл на сервере
     editProfile(newName, newEmail) {
-        return fetch(`${this._options.baseUrl}/users`, {
+        return fetch(`${this._options.baseUrl}/users/me`, {
             method: 'PATCH',
             'credentials': 'include',
             headers: this._options.headers,
             body: JSON.stringify({
                 name: newName,
-                about: newEmail
+                email: newEmail
             })
         })
             .then((res) => {

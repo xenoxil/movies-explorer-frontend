@@ -12,6 +12,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import auth from '../../utils/auth';
 import userApi from '../../utils/mainApi';
+import moviesListApi from '../../utils/MoviesApi';
 
 
 function App() {
@@ -33,6 +34,10 @@ function App() {
   const [loggedInState, setLoggedInState] = React.useState(false);
   const history = useHistory();
 
+  const [cards, setCards] = React.useState([]);
+  const [isSearched, setSearched] = React.useState(false);
+  const [filteredArray, setFiltered] = React.useState([]);
+
   React.useEffect(() => {    
     userApi
       .getProfile()
@@ -51,11 +56,29 @@ function App() {
     }, []);
   
 
+    function handleSearch(movie){
+      // проверяем выполнялся ли поиск и если нет, запрашиваем массив фильмов от Апи Bitmovies
+       if(!isSearched){
+        moviesListApi.getMovies()
+        .then((moviesArray)=>{
+          setCards(moviesArray);
+          setSearched(true)
+        })
+        .catch((err)=>{
+         console.log(err)
+        })
+       }
+       //сохраняем массив отфильтрованных фильмов
+       setFiltered(cards.filter((movieObj)=>{
+        return (movieObj.nameRU.toLowerCase()===movie.toLowerCase() || movieObj.nameEN.toLowerCase()===movie.toLowerCase())
+      }))
+    }
+
 
   function handleRegisterClick(email, password,name) {
     auth
       .register(email, password,name)
-      .then((response) => {
+      .then(() => {
         setLoggedInState(true);
         history.push("/movies");
       })
@@ -99,6 +122,14 @@ function App() {
       });
   }
 
+  function handleEditProfileClick(name,email){
+     userApi.editProfile(name,email)
+     .then((profileObj)=>{
+      setCurrentUser(profileObj)
+     })
+     .catch((err)=>{console.log(err)})
+  }
+
   function handleLogoutClick(){
     setLoggedInState(false);
     auth.logout()
@@ -106,7 +137,9 @@ function App() {
         console.log(err);
       }
     );              
-  }  
+  }
+  
+  
 
  
   return (
@@ -126,7 +159,8 @@ function App() {
          <ProtectedRoute
         component={Profile}        
         loggedIn={loggedInState}
-        onLogoutClick={handleLogoutClick}        
+        onLogoutClick={handleLogoutClick}
+        onEditClick={handleEditProfileClick}        
         exact 
          path='/profile'         
          />
@@ -139,6 +173,9 @@ function App() {
         <ProtectedRoute
         component={Main}        
         loggedIn={loggedInState}
+        filteredMovies={filteredArray}
+        onSearchClick={handleSearch}
+        isSearched={isSearched}
         exact 
          path='/movies'
          onSize={screenWidth}         

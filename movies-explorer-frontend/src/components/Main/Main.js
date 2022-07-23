@@ -12,8 +12,8 @@ function Main(props) {
     return (
       <div className="main">
         <Header className='main__header' onSize={props.onSize}/>
-        <SearchForm onSize={props.onSize} isSwitched={true}/>
-        <MoviesCardList movieCards={movieCards}/>
+        <SearchForm onSize={props.onSize} isSwitched={true} onSearchClick={props.onSearchClick} />
+        <MoviesCardList movieCards={props.filteredArray} isSearched={props.isSearched}/>
         <MoreMovies/>        
         <Footer/>   
       </div>
