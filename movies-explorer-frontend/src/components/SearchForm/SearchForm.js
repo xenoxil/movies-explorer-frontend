@@ -8,6 +8,8 @@ function SearchForm(props) {
   function searchClick(e){
     e.preventDefault();
   props.onSearchClick(searchRef.current.value)
+  props.renderMovies();
+  props.moreMoviesVisibilityCheck();
   } 
     return (
       <section className='searchSection'>

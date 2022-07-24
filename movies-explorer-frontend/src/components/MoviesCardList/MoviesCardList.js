@@ -6,7 +6,8 @@ import defaultPic from '../../images/defaultMovie.png'
     
 
 function MoviesCardList(props) {
-    console.log(props.movieCards);
+  
+         
     return (
         props.isSearched ?
         (<ul className='moviesCardList'>

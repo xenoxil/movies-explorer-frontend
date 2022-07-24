@@ -1,11 +1,12 @@
 import React from 'react'
 
 
-function moreMovies() {
-    return (
-        <button className='moreMovies'>
+function moreMovies(props) {
+    console.log(props.isShowed)
+    return (        
+        (<button className={props.isShowed ? `moreMovies` : `moreMovies moreMovies__hidden`} onClick={props.onMoreMoviesClick}>
            Ещё
-        </button>                
+        </button>)
     )
 }
 

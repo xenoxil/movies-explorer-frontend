@@ -1,6 +1,5 @@
 import React from 'react'
 import likePic from '../../images/cardLikePic.svg'
-import defaultPic from '../../images/defaultMovie.png'
 import unlikePic from '../../images/unlikePic.svg'
 
     

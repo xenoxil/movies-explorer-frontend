@@ -12,6 +12,9 @@ border:0;
 background-color: #F9F9F9;
 min-height: 36px;
 }
+.moreMovies__hidden{
+    display: none;
+}
 
 @media screen and (max-width:1279px) {
     .moreMovies{            
@@ -22,3 +25,6 @@ min-height: 36px;
         .moreMovies{            
             width: 300px;     
             }}
+
+
+            

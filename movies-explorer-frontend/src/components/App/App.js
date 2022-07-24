@@ -22,9 +22,11 @@ function App() {
   const[screenWidth,setScreenWidth]=useState(window.innerWidth)
   useEffect(() => {
     window.addEventListener("resize", () => {
-      setScreenWidth(window.innerWidth);     
+      setScreenWidth(window.innerWidth);          
     });
-  }, []) 
+  }, [])
+  
+  
   
   const [currentUser, setCurrentUser] = React.useState({
     name: "Пользователь",
@@ -36,7 +38,27 @@ function App() {
 
   const [cards, setCards] = React.useState([]);
   const [isSearched, setSearched] = React.useState(false);
-  const [filteredArray, setFiltered] = React.useState([]);
+  const [filteredArray, setFiltered] = React.useState([]); 
+  const [currentMovies,setCurrentMovies] = React.useState(0);
+  const [isMoreMoviesVisible,setMoreMoviesVisibility] = React.useState(false);
+  const [addMovies,setAddMovies]=React.useState(4);
+  const [showedMovies,setShowedMovies]=React.useState([]);
+  
+  useEffect(()=>{
+    if(screenWidth<768){
+      setCurrentMovies(5)
+      setAddMovies(5)
+    }
+    else if(screenWidth<1280 &&  screenWidth>=768){
+      setCurrentMovies(8);
+      setAddMovies(2)        
+    }
+    else{setCurrentMovies(16)
+    setAddMovies(4)}
+  },[])
+  
+  
+  
 
   React.useEffect(() => {    
     userApi
@@ -60,40 +82,33 @@ function App() {
       // проверяем выполнялся ли поиск и если нет, запрашиваем массив фильмов от Апи Bitmovies
        if(!isSearched){
         moviesListApi.getMovies()
-        .then((moviesArray)=>{
-          console.log(moviesArray)          
+        .then((moviesArray)=>{                    
           setCards(moviesArray);
-          setSearched(true)
-          setFiltered(moviesArray.filter((movieObj)=>{
-            console.log(movieObj)
+          setSearched(true);
+          setFiltered(moviesArray.filter((movieObj)=>{            
             if(movieObj.nameRU && movieObj.nameEN){
               return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
             }
             else{
               return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
-            }
-            
-          }))
-        })        
+            }          
+          }));           
+        })           
         .catch((err)=>{
          console.log(err)
-        })
+        })        
        }
        else{
         //сохраняем массив отфильтрованных фильмов
-        setFiltered(cards.filter((movieObj)=>{
-         console.log(movieObj)
+        setFiltered(cards.filter((movieObj)=>{         
          if(movieObj.nameRU && movieObj.nameEN){
            return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
          }
          else{
            return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
-         }
-         
-       }))}
-       
-       
-      console.log(filteredArray)
+         }         
+       }))       
+      }            
     }
 
 
@@ -160,6 +175,20 @@ function App() {
       }
     );              
   }
+
+  function moreMoviesVisibilityCheck(){
+    currentMovies<filteredArray.length ? setMoreMoviesVisibility(true) : setMoreMoviesVisibility(false)
+  }
+  function renderMovies(){
+    setShowedMovies(filteredArray.slice(0,currentMovies));
+  }
+  function handleMoreMoviesClick(){
+    setCurrentMovies(currentMovies+addMovies);
+    setShowedMovies(filteredArray.slice(0,currentMovies));
+    moreMoviesVisibilityCheck();    
+  }
+
+    
   
   
 
@@ -195,9 +224,13 @@ function App() {
         <ProtectedRoute
         component={Main}        
         loggedIn={loggedInState}
-        filteredMovies={filteredArray}
+        filteredMovies={showedMovies}
         onSearchClick={handleSearch}
         isSearched={isSearched}
+        isShowed={isMoreMoviesVisible}
+        onMoreMoviesClick={handleMoreMoviesClick}
+        moreMoviesVisibilityCheck={moreMoviesVisibilityCheck}
+        renderMovies={renderMovies}
         exact 
          path='/movies'
          onSize={screenWidth}         
