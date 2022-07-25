@@ -56,6 +56,10 @@ function App() {
     else{setCurrentMovies(16)
     setAddMovies(4)}
   },[])
+
+  useEffect(()=>{
+   moreMoviesVisibilityCheck()   
+  },[showedMovies])
   
   
   
@@ -79,37 +83,45 @@ function App() {
   
 
     function handleSearch(movie){
+      let fArray=[];
       // проверяем выполнялся ли поиск и если нет, запрашиваем массив фильмов от Апи Bitmovies
        if(!isSearched){
         moviesListApi.getMovies()
         .then((moviesArray)=>{                    
           setCards(moviesArray);
           setSearched(true);
-          setFiltered(moviesArray.filter((movieObj)=>{            
+          fArray=moviesArray.filter((movieObj)=>{            
             if(movieObj.nameRU && movieObj.nameEN){
               return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
             }
             else{
               return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
             }          
-          }));           
+          })
+          setFiltered(fArray);          
+          setShowedMovies(fArray.slice(0,currentMovies))                   
         })           
         .catch((err)=>{
          console.log(err)
         })        
        }
        else{
+        fArray=cards.filter((movieObj)=>{         
+          if(movieObj.nameRU && movieObj.nameEN){
+            return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
+          }
+          else{
+            return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
+          }         
+        })
         //сохраняем массив отфильтрованных фильмов
-        setFiltered(cards.filter((movieObj)=>{         
-         if(movieObj.nameRU && movieObj.nameEN){
-           return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
-         }
-         else{
-           return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
-         }         
-       }))       
-      }            
+        setFiltered(fArray);
+        setShowedMovies(fArray.slice(0,currentMovies))       
+      }
+                
     }
+
+    
 
 
   function handleRegisterClick(email, password,name) {
@@ -176,7 +188,7 @@ function App() {
     );              
   }
 
-  function moreMoviesVisibilityCheck(){
+  function moreMoviesVisibilityCheck(){    
     currentMovies<filteredArray.length ? setMoreMoviesVisibility(true) : setMoreMoviesVisibility(false)
   }
   function renderMovies(){
@@ -184,8 +196,7 @@ function App() {
   }
   function handleMoreMoviesClick(){
     setCurrentMovies(currentMovies+addMovies);
-    setShowedMovies(filteredArray.slice(0,currentMovies));
-    moreMoviesVisibilityCheck();    
+    setShowedMovies(filteredArray.slice(0,currentMovies+addMovies));             
   }
 
     
@@ -198,13 +209,15 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <Route path='/landing'>
-        <Landing onSize={screenWidth}/>
+        <Landing
+         onSize={screenWidth}
+         loggedInState={loggedInState}/>
         </Route>
         <ProtectedRoute
         component={SavedMovies}
         loggedIn={loggedInState}
         exact 
-         path='/saved-movies'
+         path='/savedMovies'
          onSize={screenWidth}
          />
          <ProtectedRoute

@@ -7,9 +7,7 @@ function SearchForm(props) {
   const searchRef = React.useRef();
   function searchClick(e){
     e.preventDefault();
-  props.onSearchClick(searchRef.current.value)
-  props.renderMovies();
-  props.moreMoviesVisibilityCheck();
+  props.onSearchClick(searchRef.current.value)   
   } 
     return (
       <section className='searchSection'>
@@ -18,7 +16,7 @@ function SearchForm(props) {
           (<div><form className='searchForm' >
             <img src={loupePic} alt='Значок лупы' className='searchForm__loupePic'/>
             <input className='searchForm__input' placeholder='Фильм' ref={searchRef} required/>
-            <button className='searchForm__searchBtn'><img src={searchBtn} alt='Кнопка поиска' onClick={searchClick}/></button>
+            <button className='searchForm__searchBtn' onClick={searchClick}><img src={searchBtn} alt='Кнопка поиска' /></button>
             
             {props.isSwitched ?
             <div className='searchForm__movieType-container'> 
@@ -35,7 +33,7 @@ function SearchForm(props) {
           :
           (<div><form className='searchForm' >            
             <input className='searchForm__input' placeholder='Фильм' ref={searchRef} required/>
-            <button className='searchForm__searchBtn'><img src={searchBtn} alt='Кнопка поиска'/></button>            
+            <button className='searchForm__searchBtn' onClick={searchClick}><img src={searchBtn} alt='Кнопка поиска' /></button>            
           </form>
           {props.isSwitched ?
           <div className='searchForm__movieType-container'> 

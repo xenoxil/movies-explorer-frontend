@@ -10,7 +10,7 @@ import Footer from '../Footer/Footer';
 function Landing(props) {
     return (
       <div className="App">
-        <Header/>
+        <Header loggedInState={props.loggedInState}/>
         <Promo/>
         <NavTab/>   
         <AboutProject />

@@ -9,13 +9,22 @@ function Header(props) {
   
     return (              
             <Switch>
-              <Route path='/landing'>
+              <Route path='/landing'>                
               <header className='header header_landingColor'>
                 <img src={HeaderLogo} className='header__logo' alt='Логотип проектной работы' />
-                <div className='header__container'>               
-                  <Link to='/sign-up' className='header__registration'>Регистрация</Link>
-                  <Link to='/sign-in' className='header__loginBtn'>Войти</Link>                  
-                </div>
+                {props.loggedInState ? 
+                (<div className='header__container'>               
+                <Link to='/movies' className='header__link link header__landingLink'>Фильмы</Link>
+                <Link to='/savedMovies' className='header__link link header__landingLink'>Сохранённые фильмы</Link>
+                <Link to='/profile' className='header__accBtn' >Аккаунт</Link>
+              </div>)
+              : 
+            (<div className='header__container'>               
+            <Link to='/signup' className='header__registration'>Регистрация</Link>
+            <Link to='/signin' className='header__loginBtn'>Войти</Link>                  
+          </div>)
+               }
+                
                 </header>
               </Route>
               <Route path='/'>
@@ -23,7 +32,7 @@ function Header(props) {
               <img src={HeaderLogo} className='header__logo' alt='Логотип проектной работы' />
               {props.onSize>=1280
               ? (<div className='header__container'>               
-              <Link to='/' className='header__link link'>Фильмы</Link>
+              <Link to='/movies' className='header__link link'>Фильмы</Link>
               <Link to='/savedMovies' className='header__link link'>Сохранённые фильмы</Link>
               <Link to='/profile' className='header__accBtn' >Аккаунт</Link>
             </div>)
