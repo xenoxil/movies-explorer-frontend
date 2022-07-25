@@ -14,14 +14,22 @@ export const config = {
         inputSelector: '.popup__input',
         submitButtonSelector: '.popup__submitbtn',
         inactiveButtonClass: 'popup__submitbtn_status_inactive',
-        errorClass: '.popup__input_state_invalid'
+        errorClass: 'popup__input_state_invalid'
     }
    
-export  const loginConfig = {
+export  const registerConfig = {
+      formSelector: '.register__form',
+      inputSelector: '.register__input',
+      submitButtonSelector: '.register__button',
+      inactiveButtonClass: 'register__submitbtn_status_inactive',
+      errorClass: 'register__input_state_invalid'
+    }
+
+    export  const loginConfig = {
       formSelector: '.login__form',
       inputSelector: '.login__input',
-      submitButtonSelector: '.login__submitbtn',
-      inactiveButtonClass: 'popup__submitbtn_status_inactive',
-      errorClass: '.popup__input_state_invalid'
+      submitButtonSelector: '.login__button',
+      inactiveButtonClass: 'login__submitbtn_status_inactive',
+      errorClass: 'login__input_state_invalid'
     }
    

@@ -6,7 +6,7 @@ export class FormValidator {
         }
         //функция показа ошибки
     _showError(input) {
-        const error = this._form.querySelector(`#${input.id}-error`);
+        const error = this._form.querySelector(`#${input.id}-error`);        
         error.textContent = input.validationMessage;
         input.classList.add(this._config.errorClass);
     }

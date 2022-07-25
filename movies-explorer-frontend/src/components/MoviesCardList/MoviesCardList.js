@@ -1,18 +1,31 @@
 import React from 'react'
 import MoviesCard from '../MoviesCard/MoviesCard'
+import defaultPic from '../../images/defaultMovie.jpg'
 
 
     
 
 function MoviesCardList(props) {
+    console.log(props.savedMovies)
     return (
-        <ul className='moviesCardList'>
+        props.isSearched ?
+        (props.movieCards.length>0 ?
+            <ul className='moviesCardList'>
             {
-             props.movieCards.map((item)=>{
-                 return <MoviesCard cardPic={item.src} name={item.name} movieName={item.movieName} duration={item.duration} key={item.key} isLiked={item.isLiked}/>
+             props.movieCards.map((item)=>{                                
+                 return <MoviesCard cardObj={item} 
+                 cardPic={item.image.formats.small ? `https://api.nomoreparties.co/${item.image.formats.small.url}` : defaultPic} name={item.nameRU}
+                  movieName={item.nameRU} duration={item.duration} key={item.id} 
+                  isLiked={props.savedMovies.some((i) => {return i === item.id})} 
+                    
+                    onCardClick={props.onCardClick} onLike={props.onLike}/>
              })
             }
-        </ul>                
+        </ul>
+        :
+        <p className='moviesCardList__empty'>Ничего не найдено ‿︵‿ヽ(°□° )ノ︵‿︵</p>
+        )
+        : <ul></ul>                
     )
 }
 
