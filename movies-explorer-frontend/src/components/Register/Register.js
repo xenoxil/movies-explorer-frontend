@@ -60,7 +60,7 @@ function handleSubmit(e) {
             <span className="error" id="registerPassword-error" />
             <button className='register__button' type='submit'>Зарегистрироваться</button>
         </form> 
-        <p className='login__register'>Уже зарегистрированы? <Link to='/sign-in' className='login__registerLink' >Войти</Link></p>       
+        <p className='login__register'>Уже зарегистрированы? <Link to='/signin' className='login__registerLink' >Войти</Link></p>       
       </section>
     );
   }

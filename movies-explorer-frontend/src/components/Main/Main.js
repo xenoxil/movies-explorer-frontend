@@ -12,8 +12,9 @@ function Main(props) {
     return (
       <div className="main">
         <Header className='main__header' onSize={props.onSize}/>
-        <SearchForm onSize={props.onSize} isSwitched={true} onSearchClick={props.onSearchClick}
-         renderMovies={props.renderMovies} moreMoviesVisibilityCheck={props.moreMoviesVisibilityCheck} isLoading={props.isLoading}/>
+        <SearchForm onSize={props.onSize} onSearchClick={props.onSearchClick}
+         renderMovies={props.renderMovies} moreMoviesVisibilityCheck={props.moreMoviesVisibilityCheck} isLoading={props.isLoading}
+          onTypeSwitch={props.onTypeSwitch} isSwitched={props.isSwitched}/>
          {props.isLoading ? <Preloader/> 
          : (<MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} onCardClick={props.onCardClick}
            onLike={props.onLike} savedMovies={props.savedMovies}/>

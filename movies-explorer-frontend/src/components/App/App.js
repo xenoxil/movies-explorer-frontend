@@ -26,18 +26,7 @@ function App() {
   useEffect(() => {
     window.addEventListener("resize", () => {
       setTimeout(setScreenWidth(window.innerWidth),1000)                
-    });
-    userApi.getSavedMovies()
-    .then((data)=>{
-      data.data.map((item)=>{
-      savedMoviesArray.push(item.movieId)
-      })
-      setSavedMovies(savedMoviesArray)
-      console.log(savedMoviesArray)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+    });    
   }, [])
   
   
@@ -57,7 +46,8 @@ function App() {
   const [isMoreMoviesVisible,setMoreMoviesVisibility] = React.useState(false);
   const [addMovies,setAddMovies]=React.useState(4);
   const [showedMovies,setShowedMovies]=React.useState([]);
-  const [isLoading, setIsLoading] = useState(false);   
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSwitched,setSwitchState] =useState(true);  
   
   useEffect(()=>{
     if(screenWidth<768){
@@ -82,7 +72,7 @@ function App() {
   React.useEffect(() => {    
     userApi
       .getProfile()
-      .then((profileObj) => {
+      .then((profileObj) => {        
         if(profileObj){
         setLoggedInState(true);
         setCurrentUser(profileObj);
@@ -92,11 +82,28 @@ function App() {
       else{
         return Promise.reject('Необходима авторизация');
       }
-      })           
+      })
+      .then(()=>{
+        userApi.getSavedMovies()
+        .then((data)=>{
+          data.data.map((item)=>{
+          savedMoviesArray.push(item)
+          })
+          setSavedMovies(savedMoviesArray)
+          return(savedMovies)      
+        })
+      })
+
       .catch((err) => console.log("Ошибка:", err));      
     }, []);
   
-
+    function TypeFiltering(moviesList){
+      if(isSwitched){        
+        return moviesList.filter((item)=>{ return item.duration>40})
+      }
+      else{
+        return moviesList.filter((item)=>{ return item.duration<=40})}
+    }
 
     function handleSearch(movie){
       let fArray=[];
@@ -115,7 +122,10 @@ function App() {
               return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
             }          
           })
-          setFiltered(fArray);          
+          fArray.forEach((item)=>{
+           item.src=`https://api.nomoreparties.co/${item.image.url}`})
+          fArray=TypeFiltering(fArray)
+         setFiltered(fArray);          
           setShowedMovies(fArray.slice(0,currentMovies))
           setIsLoading(false);                   
         })           
@@ -132,12 +142,40 @@ function App() {
             return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
           }         
         })
+        fArray=TypeFiltering(fArray)
         //сохраняем массив отфильтрованных фильмов
         setFiltered(fArray);
         setShowedMovies(fArray.slice(0,currentMovies))       
       }
                 
     }
+
+    function handleSavedMoviesSearch(movie){      
+       setIsLoading(true);                          
+       setCards(savedMovies);       
+       let fArray=savedMovies.filter((movieObj)=>{
+            if(movieObj.nameRU && movieObj.nameEN){
+              return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
+            }
+            else{
+              return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
+            }          
+          })
+          fArray.forEach((item)=>{
+            item.src=item.image;
+          })
+          fArray=TypeFiltering(fArray)
+          console.log(fArray)
+          setFiltered(fArray);          
+          setShowedMovies(fArray.slice(0,currentMovies))
+          setIsLoading(false);
+                            
+        } 
+        
+        function SwitchMovieType(){
+          setSwitchState(!isSwitched);
+          }
+    
 
     
 
@@ -226,7 +264,6 @@ function App() {
    })
    }
 
-
     
   
   
@@ -244,6 +281,10 @@ function App() {
         <ProtectedRoute
         component={SavedMovies}
         loggedIn={loggedInState}
+        savedMovies={savedMovies}
+        onSearch={handleSavedMoviesSearch}
+        onTypeSwitch={SwitchMovieType}
+        isSwitched={isSwitched}
         exact 
          path='/savedMovies'
          onSize={screenWidth}
@@ -263,7 +304,8 @@ function App() {
         <Register onRegisterClick={handleRegisterClick}/>
         </Route>        
         <ProtectedRoute
-        component={Main}        
+        component={Main} 
+        isSwitched={isSwitched}       
         loggedIn={loggedInState}
         filteredMovies={showedMovies}
         onSearchClick={handleSearch}
@@ -274,7 +316,8 @@ function App() {
         renderMovies={renderMovies}
         isLoading={isLoading}
         onLike={handleLike}
-        savedMovies={savedMovies}        
+        savedMovies={savedMovies}
+        onTypeSwitch={SwitchMovieType}        
         exact 
          path='/movies'
          onSize={screenWidth}         

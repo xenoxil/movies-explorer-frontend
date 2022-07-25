@@ -49,7 +49,7 @@ function Login(props) {
             <span className="error" id="loginPassword-error" />
             <button className='login__button' type='submit' onClick={handleSubmit}>Войти</button>
         </form>
-        <p className='login__register'>Ещё не зарегистрированы? <a className='login__registerLink' href='/sign-up'>Регистрация</a></p>
+        <p className='login__register'>Ещё не зарегистрированы? <a className='login__registerLink' href='/signup'>Регистрация</a></p>
       </div>
     );
   }
