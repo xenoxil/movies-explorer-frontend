@@ -21,10 +21,23 @@ function App() {
 
 
   const[screenWidth,setScreenWidth]=useState(window.innerWidth)
+  const savedMoviesArray=[];
+  const [savedMovies,setSavedMovies]=useState([])  
   useEffect(() => {
     window.addEventListener("resize", () => {
       setTimeout(setScreenWidth(window.innerWidth),1000)                
     });
+    userApi.getSavedMovies()
+    .then((data)=>{
+      data.data.map((item)=>{
+      savedMoviesArray.push(item.movieId)
+      })
+      setSavedMovies(savedMoviesArray)
+      console.log(savedMoviesArray)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   }, [])
   
   
@@ -204,8 +217,10 @@ function App() {
     setShowedMovies(filteredArray.slice(0,currentMovies+addMovies));             
   }
 
-  function handleLike(card){
+  function handleLike(card){    
    userApi.saveMovie(card)
+   .then(()=>{card.isLiked=true;
+  console.log(card.isLiked)})   
    .catch((err)=>{
      console.log(err);
    })
@@ -258,7 +273,8 @@ function App() {
         moreMoviesVisibilityCheck={moreMoviesVisibilityCheck}
         renderMovies={renderMovies}
         isLoading={isLoading}
-        onLike={handleLike}        
+        onLike={handleLike}
+        savedMovies={savedMovies}        
         exact 
          path='/movies'
          onSize={screenWidth}         

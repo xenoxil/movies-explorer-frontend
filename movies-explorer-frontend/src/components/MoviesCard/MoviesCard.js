@@ -5,10 +5,9 @@ import unlikePic from '../../images/unlikePic.svg'
     
 
 function MoviesCard(props) {
-    const [isLiked,setLiked]=React.useState(false)
+    
     function handleLikeClick(){
-        props.onLike(props.cardObj);
-        setLiked(true)
+        props.onLike(props.cardObj);              
     }
   
     return (
@@ -17,7 +16,9 @@ function MoviesCard(props) {
             <img src={props.cardPic} alt={props.name} className='moviesCard__pic' /></a>          
           <div className='moviesCard__container'>
               <p className='moviesCard__name'>{props.movieName}</p>
-              <button className='moviesCard__likeBtn' aria-label='Кнопка лайк' onClick={handleLikeClick}><img className='moviesCard__likePic' src={isLiked ? likePic : unlikePic} alt='кнопка лайка'/></button>    
+              <button className='moviesCard__likeBtn' aria-label='Кнопка лайк' onClick={handleLikeClick}>
+                <img className='moviesCard__likePic' src={props.isLiked ? likePic : unlikePic} alt='кнопка лайка'/>
+              </button>    
           </div>
           <p className='moviesCard__duration'>{props.duration}</p>
         </li>                

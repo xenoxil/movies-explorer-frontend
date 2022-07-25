@@ -57,12 +57,12 @@ export class mainApi {
             'credentials': 'include',
             headers: this._options.headers,
             body: JSON.stringify({
-                country,
+                country: country ? country : "#",
         director :director,
         duration: duration,
         year: year,
         description: description,
-        image:`https://api.nomoreparties.co/${image.formats.small.url}`,
+        image:`https://api.nomoreparties.co/${image.url}`,
         trailer: trailerLink,
         nameRU:nameRU,
         nameEN:nameEN ? nameEN : nameRU,
@@ -81,19 +81,19 @@ export class mainApi {
     } 
     
     //отправка лайка 
-    sendLike(id) {
-        return fetch(`${this._options.baseUrl}/likes/${id}`, {
-            method: 'PUT',
+    getSavedMovies() {
+        return fetch(`${this._options.baseUrl}/movies`, {
+            method: 'get',
             'credentials': 'include',
             headers: this._options.headers
         })
             .then((res) => {
                 if (res.ok) {
                     return res.json();
-                } else { return Promise.reject(`Ошибка при отправке лайка: ${res.status}`) }
+                } else { return Promise.reject(`Ошибка при получении сохраненных фильмов: ${res.status}`) }
             })
             .catch(() => {
-                console.log(`Ошибка при отправке лайка`)
+                console.log(`Ошибка при получении сохраненных фильмов:`)
             })
     }
 

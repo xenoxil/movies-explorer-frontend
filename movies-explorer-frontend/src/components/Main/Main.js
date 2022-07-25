@@ -7,15 +7,16 @@ import React from 'react';
 import Preloader from '../Preloader/Preloader';
 
 
-function Main(props) {
-  
+function Main(props) { 
+   
     return (
       <div className="main">
         <Header className='main__header' onSize={props.onSize}/>
         <SearchForm onSize={props.onSize} isSwitched={true} onSearchClick={props.onSearchClick}
          renderMovies={props.renderMovies} moreMoviesVisibilityCheck={props.moreMoviesVisibilityCheck} isLoading={props.isLoading}/>
          {props.isLoading ? <Preloader/> 
-         : (<MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} onCardClick={props.onCardClick} onLike={props.onLike}/>
+         : (<MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} onCardClick={props.onCardClick}
+           onLike={props.onLike} savedMovies={props.savedMovies}/>
         )} 
         <MoreMovies isShowed={props.isShowed} onMoreMoviesClick={props.onMoreMoviesClick}  /> 
         <Footer/>   
