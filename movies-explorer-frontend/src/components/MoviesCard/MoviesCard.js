@@ -5,9 +5,11 @@ import unlikePic from '../../images/unlikePic.svg'
     
 
 function MoviesCard(props) {
+  
     return (
         <li className='moviesCard'>
-          <img src={props.cardPic} alt={props.name} className='moviesCard__pic'/>
+            <a href={props.cardObj.trailerLink} target="_blank" rel = 'noreferrer'><img src={props.cardPic} alt={props.name} className='moviesCard__pic' /></a>
+          
           <div className='moviesCard__container'>
               <p className='moviesCard__name'>{props.movieName}</p>
               <button className='moviesCard__likeBtn' aria-label='Кнопка лайк'><img className='moviesCard__likePic' src={props.isLiked ? likePic : unlikePic} alt='кнопка лайка'/></button>    

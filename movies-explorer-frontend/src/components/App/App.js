@@ -15,6 +15,7 @@ import userApi from '../../utils/mainApi';
 import moviesListApi from '../../utils/MoviesApi';
 
 
+
 function App() {
 
 
@@ -22,7 +23,8 @@ function App() {
   const[screenWidth,setScreenWidth]=useState(window.innerWidth)
   useEffect(() => {
     window.addEventListener("resize", () => {
-      setScreenWidth(window.innerWidth);          
+      setTimeout(setScreenWidth(window.innerWidth),1000)
+                
     });
   }, [])
   
@@ -42,7 +44,7 @@ function App() {
   const [currentMovies,setCurrentMovies] = React.useState(0);
   const [isMoreMoviesVisible,setMoreMoviesVisibility] = React.useState(false);
   const [addMovies,setAddMovies]=React.useState(4);
-  const [showedMovies,setShowedMovies]=React.useState([]);
+  const [showedMovies,setShowedMovies]=React.useState([]);  
   
   useEffect(()=>{
     if(screenWidth<768){
@@ -81,6 +83,7 @@ function App() {
       .catch((err) => console.log("Ошибка:", err));      
     }, []);
   
+
 
     function handleSearch(movie){
       let fArray=[];
@@ -199,6 +202,7 @@ function App() {
     setShowedMovies(filteredArray.slice(0,currentMovies+addMovies));             
   }
 
+
     
   
   
@@ -243,7 +247,7 @@ function App() {
         isShowed={isMoreMoviesVisible}
         onMoreMoviesClick={handleMoreMoviesClick}
         moreMoviesVisibilityCheck={moreMoviesVisibilityCheck}
-        renderMovies={renderMovies}
+        renderMovies={renderMovies}        
         exact 
          path='/movies'
          onSize={screenWidth}         
@@ -251,7 +255,7 @@ function App() {
          <Route path='/'>
         <PageNotFound/>
         </Route>                 
-        </Switch>
+        </Switch>        
         </CurrentUserContext.Provider>
       </div>
   );

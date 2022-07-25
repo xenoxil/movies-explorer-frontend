@@ -13,8 +13,8 @@ function MoviesCardList(props) {
         (<ul className='moviesCardList'>
             {
              props.movieCards.map((item)=>{                                
-                 return <MoviesCard cardPic={item.image.formats.small ? `https://api.nomoreparties.co/${item.image.formats.small.url}` : defaultPic} name={item.nameRU}
-                  movieName={item.nameRU} duration={item.duration} key={item.id} isLiked={item.isLiked}/>
+                 return <MoviesCard cardObj={item} cardPic={item.image.formats.small ? `https://api.nomoreparties.co/${item.image.formats.small.url}` : defaultPic} name={item.nameRU}
+                  movieName={item.nameRU} duration={item.duration} key={item.id} isLiked={item.isLiked} onCardClick={props.onCardClick}/>
              })
             }
         </ul>)

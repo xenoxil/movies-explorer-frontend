@@ -13,8 +13,8 @@ function Main(props) {
         <Header className='main__header' onSize={props.onSize}/>
         <SearchForm onSize={props.onSize} isSwitched={true} onSearchClick={props.onSearchClick}
          renderMovies={props.renderMovies} moreMoviesVisibilityCheck={props.moreMoviesVisibilityCheck}/>
-        <MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} />
-        <MoreMovies isShowed={props.isShowed} onMoreMoviesClick={props.onMoreMoviesClick} />        
+        <MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} onCardClick={props.onCardClick}/>
+        <MoreMovies isShowed={props.isShowed} onMoreMoviesClick={props.onMoreMoviesClick} />              
         <Footer/>   
       </div>
     );
