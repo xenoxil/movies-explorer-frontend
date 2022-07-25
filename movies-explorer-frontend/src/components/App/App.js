@@ -44,7 +44,7 @@ function App() {
   const [isMoreMoviesVisible,setMoreMoviesVisibility] = React.useState(false);
   const [addMovies,setAddMovies]=React.useState(4);
   const [showedMovies,setShowedMovies]=React.useState([]);
-  const [isLoading, setIsLoading] = useState(false);  
+  const [isLoading, setIsLoading] = useState(false);   
   
   useEffect(()=>{
     if(screenWidth<768){
@@ -204,6 +204,13 @@ function App() {
     setShowedMovies(filteredArray.slice(0,currentMovies+addMovies));             
   }
 
+  function handleLike(card){
+   userApi.saveMovie(card)
+   .catch((err)=>{
+     console.log(err);
+   })
+   }
+
 
     
   
@@ -250,7 +257,8 @@ function App() {
         onMoreMoviesClick={handleMoreMoviesClick}
         moreMoviesVisibilityCheck={moreMoviesVisibilityCheck}
         renderMovies={renderMovies}
-        isLoading={isLoading}        
+        isLoading={isLoading}
+        onLike={handleLike}        
         exact 
          path='/movies'
          onSize={screenWidth}         

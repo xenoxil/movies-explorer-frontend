@@ -50,7 +50,36 @@ export class mainApi {
         })
             .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
     }
-
+    
+    saveMovie({country, director, duration,year,description,trailerLink,nameEN,nameRU,id,image}){
+        return fetch(`${this._options.baseUrl}/movies/`, {
+            method: 'POST',
+            'credentials': 'include',
+            headers: this._options.headers,
+            body: JSON.stringify({
+                country,
+        director :director,
+        duration: duration,
+        year: year,
+        description: description,
+        image:`https://api.nomoreparties.co/${image.formats.small.url}`,
+        trailer: trailerLink,
+        nameRU:nameRU,
+        nameEN:nameEN ? nameEN : nameRU,
+        thumbnail:`https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
+        movieId:id        
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else { return Promise.reject(`Ошибка при сохранении фильма: ${res.status}`) }
+            })
+            .catch(() => {
+                console.log(`Ошибка при сохранении фильма`)
+            })
+    } 
+    
     //отправка лайка 
     sendLike(id) {
         return fetch(`${this._options.baseUrl}/likes/${id}`, {

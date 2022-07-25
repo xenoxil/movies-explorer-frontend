@@ -15,7 +15,7 @@ function Main(props) {
         <SearchForm onSize={props.onSize} isSwitched={true} onSearchClick={props.onSearchClick}
          renderMovies={props.renderMovies} moreMoviesVisibilityCheck={props.moreMoviesVisibilityCheck} isLoading={props.isLoading}/>
          {props.isLoading ? <Preloader/> 
-         : (<MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} onCardClick={props.onCardClick}/>
+         : (<MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} onCardClick={props.onCardClick} onLike={props.onLike}/>
         )} 
         <MoreMovies isShowed={props.isShowed} onMoreMoviesClick={props.onMoreMoviesClick}  /> 
         <Footer/>   
