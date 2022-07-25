@@ -43,7 +43,8 @@ function App() {
   const [currentMovies,setCurrentMovies] = React.useState(0);
   const [isMoreMoviesVisible,setMoreMoviesVisibility] = React.useState(false);
   const [addMovies,setAddMovies]=React.useState(4);
-  const [showedMovies,setShowedMovies]=React.useState([]);  
+  const [showedMovies,setShowedMovies]=React.useState([]);
+  const [isLoading, setIsLoading] = useState(false);  
   
   useEffect(()=>{
     if(screenWidth<768){
@@ -88,6 +89,7 @@ function App() {
       let fArray=[];
       // проверяем выполнялся ли поиск и если нет, запрашиваем массив фильмов от Апи Bitmovies
        if(!isSearched){
+        setIsLoading(true);
         moviesListApi.getMovies()
         .then((moviesArray)=>{                    
           setCards(moviesArray);
@@ -101,7 +103,8 @@ function App() {
             }          
           })
           setFiltered(fArray);          
-          setShowedMovies(fArray.slice(0,currentMovies))                   
+          setShowedMovies(fArray.slice(0,currentMovies))
+          setIsLoading(false);                   
         })           
         .catch((err)=>{
          console.log(err)
@@ -246,7 +249,8 @@ function App() {
         isShowed={isMoreMoviesVisible}
         onMoreMoviesClick={handleMoreMoviesClick}
         moreMoviesVisibilityCheck={moreMoviesVisibilityCheck}
-        renderMovies={renderMovies}        
+        renderMovies={renderMovies}
+        isLoading={isLoading}        
         exact 
          path='/movies'
          onSize={screenWidth}         

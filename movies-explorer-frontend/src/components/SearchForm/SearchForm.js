@@ -16,7 +16,7 @@ function SearchForm(props) {
           (<div><form className='searchForm' >
             <img src={loupePic} alt='Значок лупы' className='searchForm__loupePic'/>
             <input className='searchForm__input' placeholder='Фильм' ref={searchRef} required/>
-            <button className='searchForm__searchBtn' onClick={searchClick}><img src={searchBtn} alt='Кнопка поиска' /></button>
+            <button className='searchForm__searchBtn' onClick={searchClick}><img src={searchBtn} alt='Кнопка поиска' disabled={props.isLoading}/></button>
             
             {props.isSwitched ?
             <div className='searchForm__movieType-container'> 
@@ -33,7 +33,7 @@ function SearchForm(props) {
           :
           (<div><form className='searchForm' >            
             <input className='searchForm__input' placeholder='Фильм' ref={searchRef} required/>
-            <button className='searchForm__searchBtn' onClick={searchClick}><img src={searchBtn} alt='Кнопка поиска' /></button>            
+            <button className='searchForm__searchBtn' onClick={searchClick}><img src={searchBtn} alt='Кнопка поиска' disabled={props.isLoading} /></button>            
           </form>
           {props.isSwitched ?
           <div className='searchForm__movieType-container'> 
