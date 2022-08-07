@@ -26,7 +26,12 @@ function App() {
   useEffect(() => {
     window.addEventListener("resize", () => {
       setTimeout(setScreenWidth(window.innerWidth),1000)                
-    });    
+    }); 
+    return () => {
+      window.removeEventListener("resize", () => {
+        setTimeout(setScreenWidth(window.innerWidth),1000)                
+      });
+    };   
   }, [])
   
   
@@ -41,6 +46,7 @@ function App() {
 
   const [cards, setCards] = React.useState([]);
   const [isSearched, setSearched] = React.useState(false);
+  const [isSavedSearched, setSavedSearched] = React.useState(false);
   const [filteredArray, setFiltered] = React.useState([]); 
   const [currentMovies,setCurrentMovies] = React.useState(0);
   const [isMoreMoviesVisible,setMoreMoviesVisibility] = React.useState(false);
@@ -65,6 +71,11 @@ function App() {
   useEffect(()=>{
    moreMoviesVisibilityCheck()   
   },[showedMovies])
+
+
+  useEffect(()=>{
+
+  })
   
   
   
@@ -87,6 +98,7 @@ function App() {
         userApi.getSavedMovies()
         .then((data)=>{
           data.data.map((item)=>{
+            item.src=item.image;
           savedMoviesArray.push(item)
           })
           setSavedMovies(savedMoviesArray)
@@ -97,13 +109,7 @@ function App() {
       .catch((err) => console.log("Ошибка:", err));      
     }, []);
   
-    function TypeFiltering(moviesList){
-      if(isSwitched){        
-        return moviesList.filter((item)=>{ return item.duration>40})
-      }
-      else{
-        return moviesList.filter((item)=>{ return item.duration<=40})}
-    }
+    
 
     function handleSearch(movie){
       let fArray=[];
@@ -114,18 +120,10 @@ function App() {
         .then((moviesArray)=>{                    
           setCards(moviesArray);
           setSearched(true);
-          fArray=moviesArray.filter((movieObj)=>{            
-            if(movieObj.nameRU && movieObj.nameEN){
-              return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
-            }
-            else{
-              return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
-            }          
-          })
-          fArray.forEach((item)=>{
-           item.src=`https://api.nomoreparties.co/${item.image.url}`})
-          fArray=TypeFiltering(fArray)
-         setFiltered(fArray);          
+          moviesArray.forEach((item)=>{
+            item.src=`https://api.nomoreparties.co/${item.image.url}`})
+          fArray= searchFilter(moviesArray,movie)          
+          setFiltered(fArray);          
           setShowedMovies(fArray.slice(0,currentMovies))
           setIsLoading(false);                   
         })           
@@ -134,42 +132,44 @@ function App() {
         })        
        }
        else{
-        fArray=cards.filter((movieObj)=>{         
-          if(movieObj.nameRU && movieObj.nameEN){
-            return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
-          }
-          else{
-            return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
-          }         
-        })
-        fArray=TypeFiltering(fArray)
+        fArray=searchFilter(cards,movie);
         //сохраняем массив отфильтрованных фильмов
         setFiltered(fArray);
-        setShowedMovies(fArray.slice(0,currentMovies))       
+        setShowedMovies(fArray.slice(0,currentMovies));       
       }
                 
     }
 
+    function typeFiltering(moviesList){
+      if(!isSwitched){        
+        return moviesList.filter((item)=>{ return item.duration>40})
+      }
+      else{
+        return moviesList.filter((item)=>{ return item.duration<=40})}
+    }
+
+    function searchFilter(moviesArray,requiredMovie){
+      let newArray=moviesArray.filter((movieObj)=>{            
+        if(movieObj.nameRU && movieObj.nameEN){
+          return (movieObj.nameRU.toLowerCase().includes(requiredMovie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(requiredMovie.toLowerCase()))
+        }
+        else{
+          return (movieObj.nameRU.toLowerCase().includes(requiredMovie.toLowerCase()))
+        }          
+      })
+      debugger
+      console.log(typeFiltering(newArray))
+      return typeFiltering(newArray);
+    }
+
     function handleSavedMoviesSearch(movie){      
        setIsLoading(true);                          
-       setCards(savedMovies);       
-       let fArray=savedMovies.filter((movieObj)=>{
-            if(movieObj.nameRU && movieObj.nameEN){
-              return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()) || movieObj.nameEN.toLowerCase().includes(movie.toLowerCase()))
-            }
-            else{
-              return (movieObj.nameRU.toLowerCase().includes(movie.toLowerCase()))
-            }          
-          })
-          fArray.forEach((item)=>{
-            item.src=item.image;
-          })
-          fArray=TypeFiltering(fArray)
-          console.log(fArray)
-          setFiltered(fArray);          
+       setCards(savedMovies);
+       setSavedSearched(true);             
+       let fArray=searchFilter(savedMovies,movie);          
+          setFiltered(fArray);
           setShowedMovies(fArray.slice(0,currentMovies))
-          setIsLoading(false);
-                            
+          setIsLoading(false);                            
         } 
         
         function SwitchMovieType(){
@@ -281,10 +281,12 @@ function App() {
         <ProtectedRoute
         component={SavedMovies}
         loggedIn={loggedInState}
-        savedMovies={savedMovies}
+        filteredMovies={showedMovies}
         onSearch={handleSavedMoviesSearch}
         onTypeSwitch={SwitchMovieType}
         isSwitched={isSwitched}
+        savedMovies={savedMovies}
+        isSavedSearched={isSavedSearched}
         exact 
          path='/savedMovies'
          onSize={screenWidth}

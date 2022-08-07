@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 function SearchForm(props) { 
   const searchRef = React.useRef();
   const history = useHistory();  
-  let isMatched=history.location.pathname==='/movies';
+  let isMatchedPath=history.location.pathname==='/movies';
   
 
   function searchClickMovies(e){
@@ -26,7 +26,6 @@ function SearchForm(props) {
   }
 
   function SwitchSavedMovieTypeHandler(e){
-    debugger
     props.onTypeSwitch();
     searchSavedMovies(e);
   }
@@ -39,15 +38,16 @@ function SearchForm(props) {
           (<div><form className='searchForm' >
             <img src={loupePic} alt='Значок лупы' className='searchForm__loupePic'/>
             <input className='searchForm__input' placeholder='Фильм' ref={searchRef} required/>
-            <button className='searchForm__searchBtn' onClick={isMatched ? searchClickMovies : searchSavedMovies}><img src={searchBtn} alt='Кнопка поиска' disabled={props.isLoading}/></button>
-            
+            <button className='searchForm__searchBtn' onClick={isMatchedPath ? searchClickMovies : searchSavedMovies} disabled={props.isLoading}>
+              <img src={searchBtn} alt='Кнопка поиска' />
+            </button>            
             {props.isSwitched ?
             <div className='searchForm__movieType-container'> 
-            <button className='searchForm__movieTypeBtn' onClick={isMatched ? SwitchMovieTypeHandler : SwitchSavedMovieTypeHandler }></button>
+            <button className='searchForm__movieTypeBtn' onClick={isMatchedPath ? SwitchMovieTypeHandler : SwitchSavedMovieTypeHandler }></button>
             <p className='searchForm__movieType'>Полнометражки</p>
             </div> :
             <div className='searchForm__movieType-container'>
-            <button className='searchForm__movieTypeBtn searchForm__movieTypeShort' onClick={isMatched ? SwitchMovieTypeHandler : SwitchSavedMovieTypeHandler }></button>
+            <button className='searchForm__movieTypeBtn searchForm__movieTypeShort' onClick={isMatchedPath ? SwitchMovieTypeHandler : SwitchSavedMovieTypeHandler }></button>
             <p className='searchForm__movieType '>Короткометражки</p>
             </div>}            
           </form>
@@ -56,15 +56,17 @@ function SearchForm(props) {
           :
           (<div><form className='searchForm' >            
             <input className='searchForm__input' placeholder='Фильм' ref={searchRef} required/>
-            <button className='searchForm__searchBtn' onClick={isMatched ? searchClickMovies : searchSavedMovies}><img src={searchBtn} alt='Кнопка поиска' disabled={props.isLoading} /></button>            
+            <button className='searchForm__searchBtn' onClick={isMatchedPath ? searchClickMovies : searchSavedMovies} disabled={props.isLoading} >
+              <img src={searchBtn} alt='Кнопка поиска'/>
+            </button>            
           </form>
           {props.isSwitched ?
           <div className='searchForm__movieType-container'> 
-          <button className='searchForm__movieTypeBtn' onClick={isMatched ? SwitchMovieTypeHandler : SwitchSavedMovieTypeHandler }></button>
+          <button className='searchForm__movieTypeBtn' onClick={isMatchedPath ? SwitchMovieTypeHandler : SwitchSavedMovieTypeHandler }></button>
             <p className='searchForm__movieType'>Полнометражки</p>
             </div> :
             <div className='searchForm__movieType-container'>
-            <button className='searchForm__movieTypeBtn searchForm__movieTypeShort' onClick={isMatched ? SwitchMovieTypeHandler : SwitchSavedMovieTypeHandler }></button>
+            <button className='searchForm__movieTypeBtn searchForm__movieTypeShort' onClick={isMatchedPath ? SwitchMovieTypeHandler : SwitchSavedMovieTypeHandler }></button>
             <p className='searchForm__movieType'>Короткометражки</p>
             </div>          
             }           
