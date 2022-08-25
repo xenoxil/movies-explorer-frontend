@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.114d79c1.chunk.css",
+    "main.js": "/static/js/main.c9a0567b.chunk.js",
+    "main.js.map": "/static/js/main.c9a0567b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.db7c8155.js",
+    "runtime-main.js.map": "/static/js/runtime-main.db7c8155.js.map",
+    "static/js/2.9c252ea1.chunk.js": "/static/js/2.9c252ea1.chunk.js",
+    "static/js/2.9c252ea1.chunk.js.map": "/static/js/2.9c252ea1.chunk.js.map",
+    "static/js/3.0b43a732.chunk.js": "/static/js/3.0b43a732.chunk.js",
+    "static/js/3.0b43a732.chunk.js.map": "/static/js/3.0b43a732.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.114d79c1.chunk.css.map": "/static/css/main.114d79c1.chunk.css.map",
+    "static/js/2.9c252ea1.chunk.js.LICENSE.txt": "/static/js/2.9c252ea1.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/unlikePic.25b2264a.svg",
+    "static/media/defaultMovie.725aa4f1.jpg": "/static/media/defaultMovie.725aa4f1.jpg",
+    "static/media/header-logo.6e5df113.svg": "/static/media/header-logo.6e5df113.svg",
+    "static/media/linkArrow.fb3c35df.svg": "/static/media/linkArrow.fb3c35df.svg",
+    "static/media/loupePic.99b6633d.svg": "/static/media/loupePic.99b6633d.svg",
+    "static/media/promo-logo.e4c6967f.svg": "/static/media/promo-logo.e4c6967f.svg",
+    "static/media/searchBtn.bd527758.svg": "/static/media/searchBtn.bd527758.svg",
+    "static/media/studentFoto.3f31b05b.png": "/static/media/studentFoto.3f31b05b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.db7c8155.js",
+    "static/js/2.9c252ea1.chunk.js",
+    "static/css/main.114d79c1.chunk.css",
+    "static/js/main.c9a0567b.chunk.js"
+  ]
+}

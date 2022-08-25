@@ -72,10 +72,6 @@ function App() {
    moreMoviesVisibilityCheck()   
   },[showedMovies])
 
-
-  useEffect(()=>{
-
-  })
   
   
   
@@ -87,7 +83,6 @@ function App() {
         if(profileObj){
         setLoggedInState(true);
         setCurrentUser(profileObj);
-        
         history.push("/movies");
       }
       else{
@@ -99,7 +94,7 @@ function App() {
         .then((data)=>{
           data.data.map((item)=>{
             item.src=item.image;
-          savedMoviesArray.push(item)
+          return savedMoviesArray.push(item)
           })
           setSavedMovies(savedMoviesArray)
           return(savedMovies)      
@@ -141,7 +136,7 @@ function App() {
     }
 
     function typeFiltering(moviesList){
-      if(!isSwitched){        
+      if(isSwitched){        
         return moviesList.filter((item)=>{ return item.duration>40})
       }
       else{
@@ -156,8 +151,7 @@ function App() {
         else{
           return (movieObj.nameRU.toLowerCase().includes(requiredMovie.toLowerCase()))
         }          
-      })
-      debugger
+      })            
       console.log(typeFiltering(newArray))
       return typeFiltering(newArray);
     }
@@ -184,15 +178,8 @@ function App() {
     auth
       .register(email, password,name)
       .then(() => {
-        setLoggedInState(true);
-        history.push("/movies");
-      })
-      .then(()=>{
-        userApi.getProfile()
-        .then((profileObj) => {
-          setCurrentUser(profileObj);
-        })
-      })
+        handleLoginClick(email, password)
+      })      
       .catch((err) => {
         if (err === "400") {
           console.log("400 - некорректно заполнено одно из полей");
@@ -257,8 +244,8 @@ function App() {
 
   function handleLike(card){    
    userApi.saveMovie(card)
-   .then(()=>{card.isLiked=true;
-  console.log(card.isLiked)})   
+   .then(()=>{
+  console.log(card)})   
    .catch((err)=>{
      console.log(err);
    })

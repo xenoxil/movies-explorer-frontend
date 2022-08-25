@@ -11,7 +11,7 @@ function SearchForm(props) {
   
 
   function searchClickMovies(e){
-    e.preventDefault();
+   e.preventDefault();
   props.onSearchClick(searchRef.current.value)   
   } 
 
@@ -20,9 +20,9 @@ function SearchForm(props) {
     props.onSearch(searchRef.current.value);
   }
 
-  function SwitchMovieTypeHandler(e){
+  function SwitchMovieTypeHandler(e){    
     props.onTypeSwitch();
-    searchClickMovies(e);    
+    searchClickMovies(e);        
   }
 
   function SwitchSavedMovieTypeHandler(e){

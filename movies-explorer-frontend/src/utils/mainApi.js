@@ -51,22 +51,22 @@ export class mainApi {
             .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
     }
     
-    saveMovie({country, director, duration,year,description,trailerLink,nameEN,nameRU,id,image}){
+    saveMovie({country, director, duration,year,description,trailerLink,nameEN,nameRU,id,src,image}){
         return fetch(`${this._options.baseUrl}/movies/`, {
             method: 'POST',
             'credentials': 'include',
             headers: this._options.headers,
             body: JSON.stringify({
-                country: country ? country : "#",
+                country: country ? country : "##",
         director :director,
         duration: duration,
         year: year,
         description: description,
-        image:`https://api.nomoreparties.co/${image.url}`,
+        image:src,
         trailer: trailerLink,
         nameRU:nameRU,
         nameEN:nameEN ? nameEN : nameRU,
-        thumbnail:`https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
+        thumbnail:`https://api.nomoreparties.co${image.formats.thumbnail.url}`,
         movieId:id        
             })
         })
@@ -117,7 +117,7 @@ export class mainApi {
   
 }    
 const userApi = new mainApi({
-    //baseUrl: 'http://localhost:3001',
+    //baseUrl: 'http://localhost:3000',
     baseUrl: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
     headers: {        
         'Content-Type': 'application/json'

@@ -65,13 +65,16 @@ align-self: center;
     background-size: contain;
 }
 
-.moviesCard__likeBtn__active{
+.moviesCard__likeBtn_active{
     width:24px;
     height:24px;
     padding:0;
     border:0;
     background-color: white;
     background-image: url(../../images/unlikePic.svg);
+    cursor:pointer;
+    outline:none;
+    background-size: contain;
 }
 
 

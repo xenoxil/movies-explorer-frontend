@@ -5,18 +5,19 @@ import defaultPic from '../../images/defaultMovie.jpg'
 
     
 
-function MoviesCardList(props) {    
+function MoviesCardList(props) { 
+console.log('сохраненные фильмы')
+console.log(props.savedMovies)
     return (
         props.isSearched ?
         (props.movieCards.length>0 ?
             <ul className='moviesCardList'>
             {
              props.movieCards.map((item)=>{
-                console.log(item);
                  return <MoviesCard cardObj={item} 
                  cardPic={item.src ? item.src :  defaultPic} name={item.nameRU}
-                  movieName={item.nameRU} duration={item.duration} key={item.id} 
-                  isLiked={props.movieCards.some((i) => {return i.movieId === item.id})} 
+                  movieName={item.nameRU} duration={item.duration} key={item.id}
+                  savedMovies={props.savedMovies}
                     onCardClick={props.onCardClick} onLike={props.onLike}/>
              })
             }
