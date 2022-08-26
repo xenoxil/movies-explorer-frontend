@@ -64,7 +64,7 @@ export class mainApi {
         year: year,
         description: description,
         image:src,
-        trailer: trailerLink,
+        trailer: trailerLink ? trailerLink : 'https://xenoxil.movies-explorer.nomoreparties.sbs/404',
         nameRU:nameRU,
         nameEN:nameEN ? nameEN : nameRU,
         thumbnail:`https://api.nomoreparties.co${image.formats.thumbnail.url}`,
@@ -118,8 +118,8 @@ export class mainApi {
   
 }    
 const userApi = new mainApi({
-    baseUrl: 'http://localhost:3001',
-    // baseUrl: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
+    //baseUrl: 'http://localhost:3001',
+    baseUrl: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
     headers: {        
         'Content-Type': 'application/json'
     }

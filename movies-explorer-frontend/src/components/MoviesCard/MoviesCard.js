@@ -1,7 +1,7 @@
 
 function MoviesCard(props) {
     
-    const isLiked = props.savedMovies.some(i =>  i.movieId === props.cardObj.id);
+    const isLiked = props.savedMovies.some(movie =>  movie.movieId === props.cardObj.id);
 
 
     function handleLikeClick(){

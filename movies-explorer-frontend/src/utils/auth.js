@@ -65,8 +65,8 @@ export class Auth {
 }
 
 const auth = new Auth({
- baseUrl: 'http://localhost:3001',
-  // baseUrl: "https://xenoxil.movie-explorer.nomoreparties.sbs",
+ // baseUrl: 'http://localhost:3001',
+  baseUrl: "https://xenoxil.movie-explorer.nomoreparties.sbs",
   headers: {
     "Content-Type": "application/json",
   },

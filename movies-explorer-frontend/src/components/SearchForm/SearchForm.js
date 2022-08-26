@@ -20,14 +20,16 @@ function SearchForm(props) {
     props.onSearch(searchRef.current.value);
   }
 
-  function SwitchMovieTypeHandler(e){    
+  function SwitchMovieTypeHandler(e){ 
+    e.preventDefault()   
     props.onTypeSwitch();
-    searchClickMovies(e);        
+    /* searchClickMovies(e); */   
   }
 
   function SwitchSavedMovieTypeHandler(e){
+    e.preventDefault()
     props.onTypeSwitch();
-    searchSavedMovies(e);
+   /* searchSavedMovies(e);*/
   }
 
   

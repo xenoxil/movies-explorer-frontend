@@ -14,6 +14,9 @@ console.log(props.savedMovies)
             <ul className='moviesCardList'>
             {
              props.movieCards.map((item)=>{
+                if(!item.src){item.src=item.image};
+                if(!item.id){item.id=item.movieId}
+
                  return <MoviesCard cardObj={item} 
                  cardPic={item.src ? item.src :  defaultPic} name={item.nameRU}
                   movieName={item.nameRU} duration={item.duration} key={item.id}

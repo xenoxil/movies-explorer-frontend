@@ -100,7 +100,6 @@ function App() {
           return(savedMovies)      
         })
       })
-
       .catch((err) => console.log("Ошибка:", err));      
     }, []);
   
@@ -256,7 +255,7 @@ function App() {
    function handleDislike(card){
     const deleteId = savedMovies.find((movie) => movie.movieId===card.id)._id;
     userApi.removeMovie(deleteId)
-    .then((deletedCard) => {
+    .then(() => {
       const arrayWithoutDeletedMovie=[];
       savedMovies.forEach((movie) => { 
         if(movie.movieId!==card.id){
@@ -288,6 +287,8 @@ function App() {
         isSwitched={isSwitched}
         savedMovies={savedMovies}
         isSavedSearched={isSavedSearched}
+        onLikeClick={handleLike}
+        onDislikeClick={handleDislike}
         exact 
          path='/savedMovies'
          onSize={screenWidth}
