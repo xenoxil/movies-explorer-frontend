@@ -17,7 +17,7 @@ function Main(props) {
           onTypeSwitch={props.onTypeSwitch} isSwitched={props.isSwitched}/>
          {props.isLoading ? <Preloader/> 
          : (<MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} onCardClick={props.onCardClick}
-           onLike={props.onLike} savedMovies={props.savedMovies}/>
+           onLike={props.onLike} savedMovies={props.savedMovies} onDislikeClick={props.onDislikeClick}/>
         )} 
         <MoreMovies isShowed={props.isShowed} onMoreMoviesClick={props.onMoreMoviesClick}  /> 
         <Footer/>   

@@ -18,7 +18,7 @@ console.log(props.savedMovies)
                  cardPic={item.src ? item.src :  defaultPic} name={item.nameRU}
                   movieName={item.nameRU} duration={item.duration} key={item.id}
                   savedMovies={props.savedMovies}
-                    onCardClick={props.onCardClick} onLike={props.onLike}/>
+                    onCardClick={props.onCardClick} onLike={props.onLike} onDislikeClick={props.onDislikeClick}/>
              })
             }
         </ul>

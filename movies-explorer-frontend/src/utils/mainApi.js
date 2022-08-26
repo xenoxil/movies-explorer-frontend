@@ -42,8 +42,9 @@ export class mainApi {
             })            
     }
     changeLikeCardStatus(id, isLiked) {
+
         // Обычная реализация: 2 разных метода для удаления и постановки лайка.
-        return fetch(`${this._options.baseUrl}/${id}/likes`, {
+        return fetch(`${this._options.baseUrl}/movies`, {
             method: isLiked ? 'PUT' : 'DELETE',
             'credentials': 'include',
             headers: this._options.headers,
@@ -97,15 +98,15 @@ export class mainApi {
             })
     }
 
-    //удаление лайка на сервере
-    removeLike(id) {
-        return fetch(`${this._options.baseUrl}/likes/${id}`, {
+    //удаление фильма из сохраненных на сервере
+    removeMovie(id) {
+        return fetch(`${this._options.baseUrl}/movies/${id}`, {
             method: 'DELETE',
             'credentials': 'include',
             headers: this._options.headers
         })
-            .then((res) => {
-                if (res.ok) {
+            .then((res) => {                
+                if (res.ok) {                    
                     return res.json();
                 } else { return Promise.reject(`Ошибка при удалении лайка: ${res.status}`) }
             })
@@ -117,8 +118,8 @@ export class mainApi {
   
 }    
 const userApi = new mainApi({
-    //baseUrl: 'http://localhost:3000',
-    baseUrl: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
+    baseUrl: 'http://localhost:3001',
+    // baseUrl: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
     headers: {        
         'Content-Type': 'application/json'
     }

@@ -151,7 +151,8 @@ function App() {
         else{
           return (movieObj.nameRU.toLowerCase().includes(requiredMovie.toLowerCase()))
         }          
-      })            
+      })
+      console.log('массив отфильтрованных по хронометражу фильмов')            
       console.log(typeFiltering(newArray))
       return typeFiltering(newArray);
     }
@@ -242,20 +243,33 @@ function App() {
     setShowedMovies(filteredArray.slice(0,currentMovies+addMovies));             
   }
 
-  function handleLike(card){    
+  function handleLike(card){ 
    userApi.saveMovie(card)
-   .then(()=>{
+   .then((card)=>{
+    setSavedMovies([card, ...savedMovies])
   console.log(card)})   
    .catch((err)=>{
      console.log(err);
    })
    }
 
-    
-  
-  
+   function handleDislike(card){
+    const deleteId = savedMovies.find((movie) => movie.movieId===card.id)._id;
+    userApi.removeMovie(deleteId)
+    .then((deletedCard) => {
+      const arrayWithoutDeletedMovie=[];
+      savedMovies.forEach((movie) => { 
+        if(movie.movieId!==card.id){
+          arrayWithoutDeletedMovie.push(movie)
+        }        
+      })
+      setSavedMovies(arrayWithoutDeletedMovie)     
+    })
+    .catch((err)=>{
+       console.log(err);
+     })
+     }
 
- 
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -305,6 +319,7 @@ function App() {
         renderMovies={renderMovies}
         isLoading={isLoading}
         onLike={handleLike}
+        onDislikeClick={handleDislike}
         savedMovies={savedMovies}
         onTypeSwitch={SwitchMovieType}        
         exact 
