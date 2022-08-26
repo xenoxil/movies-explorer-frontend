@@ -53,7 +53,8 @@ function App() {
   const [addMovies,setAddMovies]=React.useState(4);
   const [showedMovies,setShowedMovies]=React.useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSwitched,setSwitchState] =useState(true);  
+  const [isSwitched,setSwitchState] =useState(true);
+  const [lastSearchedMovies,setLastSearch] = useState(true);  
   
   useEffect(()=>{
     if(screenWidth<768){
@@ -129,6 +130,7 @@ function App() {
         fArray=searchFilter(cards,movie);
         //сохраняем массив отфильтрованных фильмов
         setFiltered(fArray);
+        setLastSearch(fArray);        
         setShowedMovies(fArray.slice(0,currentMovies));       
       }
                 
@@ -158,7 +160,7 @@ function App() {
 
     function handleSavedMoviesSearch(movie){      
        setIsLoading(true);                          
-       setCards(savedMovies);
+       /*setCards(savedMovies);*/
        setSavedSearched(true);             
        let fArray=searchFilter(savedMovies,movie);          
           setFiltered(fArray);
@@ -288,7 +290,7 @@ function App() {
         savedMovies={savedMovies}
         isSavedSearched={isSavedSearched}
         onLikeClick={handleLike}
-        onDislikeClick={handleDislike}
+        onDislikeClick={handleDislike}        
         exact 
          path='/savedMovies'
          onSize={screenWidth}
@@ -322,7 +324,8 @@ function App() {
         onLike={handleLike}
         onDislikeClick={handleDislike}
         savedMovies={savedMovies}
-        onTypeSwitch={SwitchMovieType}        
+        onTypeSwitch={SwitchMovieType}
+        lastSearch={lastSearchedMovies}        
         exact 
          path='/movies'
          onSize={screenWidth}         
