@@ -1,16 +1,21 @@
 import React from 'react'
 import Header from '../Header/Header';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-
+import Notification from '../Notification/Notification';
 
 function Profile(props) {
   const nameRef = React.useRef();
   const emailRef = React.useRef();
   const userProfile = React.useContext(CurrentUserContext);
+  
+  
+  
   function editProfile(e){
-    e.preventDefault();    
-    props.onEditClick(nameRef.current.value, emailRef.current.value)  
+    e.preventDefault();
+      props.onEditClick(nameRef.current.value, emailRef.current.value) 
+   
   }
+   
 
     return (
       <div className='profile'>
@@ -27,7 +32,8 @@ function Profile(props) {
            </div>
            <button className='profile__edit' type='submit' onClick={editProfile}>Редактировать</button>             
         </form>
-        <button className='profile__logout' type='button' onClick={props.onLogoutClick}>Выйти из аккаунта</button>
+        <button className='profile__logout' type='button' onClick={props.onLogoutClick} disable={props.buttonDisableState}>Выйти из аккаунта</button>
+        <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage}/>
       </div>
     );
   }

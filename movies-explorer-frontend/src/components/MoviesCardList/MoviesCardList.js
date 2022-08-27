@@ -17,7 +17,7 @@ console.log(props.savedMovies)
                 if(!item.src){item.src=item.image};
                 if(!item.id){item.id=item.movieId}
 
-                 return <MoviesCard cardObj={item} 
+                 return <MoviesCard cardObj={item} savedMoviesPage={props.savedMoviesPage}
                  cardPic={item.src ? item.src :  defaultPic} name={item.nameRU}
                   movieName={item.nameRU} duration={item.duration} key={item.id}
                   savedMovies={props.savedMovies}

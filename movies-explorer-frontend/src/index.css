@@ -18,6 +18,7 @@
 @import url('./components/PageNotFound/PageNotFound.css');
 @import url('./components/Menu/Menu.css');
 @import url('./components/Error/error.css');
+@import url('./components/Notification/Notification.css');
 
 body {
   padding: 0;

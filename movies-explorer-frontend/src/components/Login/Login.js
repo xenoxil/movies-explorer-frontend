@@ -1,9 +1,8 @@
 import HeaderLogo from '../../images/header-logo.svg'
-import React,{useRef} from'react'
-import {withRouter} from 'react-router-dom' 
+import React,{useRef} from'react' 
 import {FormValidator} from '../FormValidator'
 import {loginConfig} from '../../utils/constants'
-
+import Notification from '../Notification/Notification'
 
 function Login(props) {
 
@@ -50,6 +49,7 @@ function Login(props) {
             <button className='login__button' type='submit' onClick={handleSubmit}>Войти</button>
         </form>
         <p className='login__register'>Ещё не зарегистрированы? <a className='login__registerLink' href='/signup'>Регистрация</a></p>
+        <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage}/>
       </div>
     );
   }

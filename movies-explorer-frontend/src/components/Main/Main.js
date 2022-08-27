@@ -5,6 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import MoreMovies from '../moreMovies/moreMovies';
 import React from 'react';
 import Preloader from '../Preloader/Preloader';
+import Notification from '../Notification/Notification';
 
 
 function Main(props) { 
@@ -20,7 +21,8 @@ function Main(props) {
            onLike={props.onLike} savedMovies={props.savedMovies} onDislikeClick={props.onDislikeClick}/>
         )} 
         <MoreMovies isShowed={props.isShowed} onMoreMoviesClick={props.onMoreMoviesClick}  /> 
-        <Footer/>   
+        <Footer/> 
+        <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage}/>  
       </div>
     );
   }

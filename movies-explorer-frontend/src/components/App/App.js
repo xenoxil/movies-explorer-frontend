@@ -6,7 +6,7 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import {Route,Switch,useHistory} from 'react-router-dom'
+import {Route,Switch,useHistory, Redirect} from 'react-router-dom'
 import React,{useState,useEffect} from 'react'
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -22,15 +22,15 @@ function App() {
 
   const[screenWidth,setScreenWidth]=useState(window.innerWidth)
   const savedMoviesArray=[];
-  const [savedMovies,setSavedMovies]=useState([])  
-  useEffect(() => {
-    window.addEventListener("resize", () => {
+  const [savedMovies,setSavedMovies]=useState([]) 
+  const resizeFunction = () => {
       setTimeout(setScreenWidth(window.innerWidth),1000)                
-    }); 
+    }
+  
+  useEffect(() => {
+    window.addEventListener("resize", resizeFunction); 
     return () => {
-      window.removeEventListener("resize", () => {
-        setTimeout(setScreenWidth(window.innerWidth),1000)                
-      });
+      window.removeEventListener("resize", resizeFunction);
     };   
   }, [])
   
@@ -53,8 +53,12 @@ function App() {
   const [addMovies,setAddMovies]=React.useState(4);
   const [showedMovies,setShowedMovies]=React.useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSwitched,setSwitchState] =useState(true);
-  const [lastSearchedMovies,setLastSearch] = useState(true);  
+  const [isSwitched,setSwitchState] =useState(true);  
+  const [notificationVisibility,setNotificationVisibility] = useState(false);
+  const [notificationMessage,setNotificationMessage] = useState('');
+  const [buttonDisableState,setButtonDisableState] = useState(false);
+
+    
   
   useEffect(()=>{
     if(screenWidth<768){
@@ -108,6 +112,8 @@ function App() {
 
     function handleSearch(movie){
       let fArray=[];
+      localStorage.setItem('moviesSearchInputValue', movie);
+      localStorage.setItem('moviesTypeFull', isSwitched);
       // проверяем выполнялся ли поиск и если нет, запрашиваем массив фильмов от Апи Bitmovies
        if(!isSearched){
         setIsLoading(true);
@@ -118,7 +124,8 @@ function App() {
           moviesArray.forEach((item)=>{
             item.src=`https://api.nomoreparties.co/${item.image.url}`})
           fArray= searchFilter(moviesArray,movie)          
-          setFiltered(fArray);          
+          setFiltered(fArray);
+          localStorage.setItem('moviesObjects', fArray);                   
           setShowedMovies(fArray.slice(0,currentMovies))
           setIsLoading(false);                   
         })           
@@ -130,10 +137,10 @@ function App() {
         fArray=searchFilter(cards,movie);
         //сохраняем массив отфильтрованных фильмов
         setFiltered(fArray);
-        setLastSearch(fArray);        
-        setShowedMovies(fArray.slice(0,currentMovies));       
+        localStorage.setItem('moviesObjects', fArray);                
+        setShowedMovies(fArray.slice(0,currentMovies));               
       }
-                
+               
     }
 
     function typeFiltering(moviesList){
@@ -177,18 +184,25 @@ function App() {
 
 
   function handleRegisterClick(email, password,name) {
+    setButtonDisableState(true);
     auth
       .register(email, password,name)
       .then(() => {
         handleLoginClick(email, password)
+        handlingNotification(`Регистрация прошла успешно`)
       })      
       .catch((err) => {
         if (err === "400") {
           console.log("400 - некорректно заполнено одно из полей");
+          handlingNotification("Ошибка при регистрации 400 - некорректно заполнено одно из полей")
         } else {
           console.log(`Ошибка:`, err);
+          handlingNotification(`Ошибка при регистрации: ${err}`)
         }
         setLoggedInState(false);
+      })
+      .finally(()=>{
+        setButtonDisableState(false);
       })      
   }
 
@@ -196,6 +210,7 @@ function App() {
     auth
       .login(email, password)
       .then(() => {
+        handlingNotification(`Вход успешно выполнен`)
         setLoggedInState(true);        
         history.push("/movies");
       })
@@ -208,22 +223,44 @@ function App() {
       .catch((err) => {
         if (err === 401) {
           console.log("401 - пользователь с email не найден");
+          handlingNotification(`Ошибка при входе: 401 - пользователь с email не найден`)
+          
         } else if (err === 400) {
           console.log("400 - не передано одно из полей ");
+          handlingNotification(`Ошибка при входе: 400 - не передано одно из полей или одно из полей не валидно`)
         } else {
           console.log(err);
+          handlingNotification(`Ошибка при входе: ${err}`)
         }
       });
   }
 
-  function handleEditProfileClick(name,email){
-     userApi.editProfile(name,email)
-     .then((profileObj)=>{
-      setCurrentUser(profileObj)
-     })
-     .catch((err)=>{console.log(err)})
+  function handlingNotification(notificationMessage){
+    setNotificationMessage(notificationMessage)
+    setNotificationVisibility(true);
+     setTimeout(()=>{setNotificationVisibility(false)},5000);
   }
 
+  function handleEditProfileClick(name,email){
+    if(name!==currentUser.data.name  || email!==currentUser.data.email){
+      setButtonDisableState(true);
+      userApi.editProfile(name,email)
+     .then((profileObj)=>{
+      setCurrentUser(profileObj)
+      handlingNotification(`Данные профиля успешно изменены`)      
+     })
+     .catch((err)=>{console.log(err)
+      handlingNotification(`Ошибка при изменении профиля: ${err}`);      
+    })
+    .finally(()=>{
+      setButtonDisableState(false);
+    })
+  }
+  else{
+    handlingNotification('Пожалуйста измените данные профиля перед нажатием кнопки "Редактировать"')
+  }
+    }  
+   
   function handleLogoutClick(){
     setLoggedInState(false);
     auth.logout()
@@ -248,9 +285,14 @@ function App() {
    userApi.saveMovie(card)
    .then((card)=>{
     setSavedMovies([card, ...savedMovies])
+    handlingNotification(`Фильм успешно сохранён`)    
   console.log(card)})   
    .catch((err)=>{
      console.log(err);
+     if(err.statusCode===400){
+      handlingNotification(`${err.message}`);
+     }     
+     handlingNotification(`${err}`)
    })
    }
 
@@ -264,10 +306,12 @@ function App() {
           arrayWithoutDeletedMovie.push(movie)
         }        
       })
-      setSavedMovies(arrayWithoutDeletedMovie)     
+      setSavedMovies(arrayWithoutDeletedMovie)
+      handlingNotification(`Фильм успешно удалён`)       
     })
     .catch((err)=>{
-       console.log(err);
+       console.log(err)
+       handlingNotification(`Ошибка при удалении фильма ${err}`);
      })
      }
 
@@ -275,7 +319,7 @@ function App() {
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
       <Switch>
-        <Route path='/landing'>
+        <Route exact path='/landing'>
         <Landing
          onSize={screenWidth}
          loggedInState={loggedInState}/>
@@ -290,7 +334,9 @@ function App() {
         savedMovies={savedMovies}
         isSavedSearched={isSavedSearched}
         onLikeClick={handleLike}
-        onDislikeClick={handleDislike}        
+        onDislikeClick={handleDislike}
+        isNotificationVisible={notificationVisibility}
+        notificationMessage={notificationMessage}           
         exact 
          path='/savedMovies'
          onSize={screenWidth}
@@ -299,15 +345,25 @@ function App() {
         component={Profile}        
         loggedIn={loggedInState}
         onLogoutClick={handleLogoutClick}
-        onEditClick={handleEditProfileClick}        
+        onEditClick={handleEditProfileClick}
+        isNotificationVisible={notificationVisibility}
+        notificationMessage={notificationMessage}
+        buttonDisableState={buttonDisableState}        
         exact 
          path='/profile'         
          />
-        <Route path='/signin'>
-        <Login onLogin={handleLoginClick}/>
+        <Route exact path='/signin'>
+        <Login onLogin={handleLoginClick}
+        isNotificationVisible={notificationVisibility}
+        notificationMessage={notificationMessage}
+        />
         </Route>
-        <Route path='/signup'>
-        <Register onRegisterClick={handleRegisterClick}/>
+        <Route exact path='/signup'>
+        <Register onRegisterClick={handleRegisterClick}
+        isNotificationVisible={notificationVisibility}
+        notificationMessage={notificationMessage}
+        buttonDisableState={buttonDisableState}
+        />
         </Route>        
         <ProtectedRoute
         component={Main} 
@@ -325,12 +381,16 @@ function App() {
         onDislikeClick={handleDislike}
         savedMovies={savedMovies}
         onTypeSwitch={SwitchMovieType}
-        lastSearch={lastSearchedMovies}        
+        isNotificationVisible={notificationVisibility}
+        notificationMessage={notificationMessage}        
         exact 
          path='/movies'
          onSize={screenWidth}         
          />
-         <Route path='/'>
+         <Route exact path="/">
+         {<Redirect to="/landing" />}
+         </Route>
+         <Route path='*'>
         <PageNotFound/>
         </Route>                 
         </Switch>        

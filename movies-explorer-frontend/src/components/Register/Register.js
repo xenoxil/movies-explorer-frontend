@@ -1,8 +1,9 @@
 import HeaderLogo from '../../images/header-logo.svg'
 import {FormValidator} from '../FormValidator';
-import React, { useRef } from "react";
+import React, { useRef} from "react";
 import { Link } from "react-router-dom";
 import {registerConfig} from '../../utils/constants';
+import Notification from '../Notification/Notification';
 
 
 function Register(props) {
@@ -10,6 +11,7 @@ function Register(props) {
   const name = useRef();
   const email = useRef();
   const password = useRef();
+  
    
   React.useEffect(() => {   
   const registerForm=document.getElementById('registerForm');
@@ -58,9 +60,10 @@ function handleSubmit(e) {
             type='password'
             />
             <span className="error" id="registerPassword-error" />
-            <button className='register__button' type='submit'>Зарегистрироваться</button>
+            <button className='register__button' type='submit' disabled={props.buttonDisableState}>Зарегистрироваться</button>
         </form> 
-        <p className='login__register'>Уже зарегистрированы? <Link to='/signin' className='login__registerLink' >Войти</Link></p>       
+        <p className='login__register'>Уже зарегистрированы? <Link to='/signin' className='login__registerLink' >Войти</Link></p> 
+        <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage}/>      
       </section>
     );
   }

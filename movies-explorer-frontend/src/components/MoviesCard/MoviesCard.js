@@ -31,7 +31,7 @@ function MoviesCard(props) {
             <img src={props.cardPic} alt={props.name} className='moviesCard__pic' /></a>          
           <div className='moviesCard__container'>
               <p className='moviesCard__name'>{props.movieName}</p>
-              <button className={isLiked ? 'moviesCard__likeBtn ' : 'moviesCard__likeBtn_active' }
+              <button className={ props.savedMoviesPage ? 'moviesCard__deleteButton' : isLiked ? 'moviesCard__likeBtn ' :  'moviesCard__likeBtn_active' }
                aria-label='Кнопка лайк' type="button" onClick={isLiked ? handleDislike :handleLikeClick}> </button>    
           </div>
           <p className='moviesCard__duration'>{timeDuration}</p>

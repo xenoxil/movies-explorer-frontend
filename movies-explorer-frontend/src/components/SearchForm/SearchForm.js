@@ -1,18 +1,26 @@
 import React from 'react'
 import loupePic from '../../images/loupePic.svg'
 import searchBtn from '../../images/searchBtn.svg'
+import {useEffect} from 'react'    
 import { useHistory } from 'react-router-dom';
-    
+
 
 function SearchForm(props) { 
   const searchRef = React.useRef();
-  const history = useHistory();  
+  const history = useHistory();
   let isMatchedPath=history.location.pathname==='/movies';
-  
+
+  useEffect(() => {
+    const lastSearchedInput=(localStorage.getItem('moviesSearchInputValue'));
+    const lastMovieType=(localStorage.getItem('moviesTypeFull'));
+    if(lastMovieType !==null && lastSearchedInput!==null){
+      searchRef.current.value=lastSearchedInput;
+    }    
+ },[])
 
   function searchClickMovies(e){
    e.preventDefault();
-  props.onSearchClick(searchRef.current.value)   
+  props.onSearchClick(searchRef.current.value)     
   } 
 
   function searchSavedMovies(e){

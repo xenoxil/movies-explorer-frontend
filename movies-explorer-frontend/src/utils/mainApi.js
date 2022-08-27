@@ -75,10 +75,7 @@ export class mainApi {
                 if (res.ok) {
                     return res.json();
                 } else { return Promise.reject(`Ошибка при сохранении фильма: ${res.status}`) }
-            })
-            .catch(() => {
-                console.log(`Ошибка при сохранении фильма`)
-            })
+            })            
     } 
     
     //отправка лайка 

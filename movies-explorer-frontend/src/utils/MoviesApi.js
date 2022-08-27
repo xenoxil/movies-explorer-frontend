@@ -1,4 +1,4 @@
-export class movieApi {
+export class moviesApi {
     constructor(options) {
         // тело конструктора
         this._options = options;
@@ -22,7 +22,7 @@ export class movieApi {
    
 }    
 
-const moviesListApi = new movieApi({
+const moviesListApi = new moviesApi({
     baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
     headers: {        
         'Content-Type': 'application/json'
