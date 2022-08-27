@@ -6,10 +6,11 @@ import defaultPic from '../../images/defaultMovie.jpg'
     
 
 function MoviesCardList(props) { 
-console.log('сохраненные фильмы')
-console.log(props.savedMovies)
+console.log('сохраненные фильмы');
+console.log(props.savedMovies);
+
     return (
-        props.isSearched ?
+        props.isStorageFull || props.isSearched ?
         (props.movieCards.length>0 ?
             <ul className='moviesCardList'>
             {

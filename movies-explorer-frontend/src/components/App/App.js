@@ -53,10 +53,11 @@ function App() {
   const [addMovies,setAddMovies]=React.useState(4);
   const [showedMovies,setShowedMovies]=React.useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSwitched,setSwitchState] =useState(true);  
+  const [isSwitched,setSwitchState] = useState(true);  
   const [notificationVisibility,setNotificationVisibility] = useState(false);
   const [notificationMessage,setNotificationMessage] = useState('');
   const [buttonDisableState,setButtonDisableState] = useState(false);
+  const [isStorageFull,setStorageState] = useState(false)
 
     
   
@@ -77,6 +78,16 @@ function App() {
    moreMoviesVisibilityCheck()   
   },[showedMovies])
 
+  useEffect(()=>{
+    if (localStorage.getItem('moviesObjects') !== null && localStorage.getItem('moviesObjects') !== []) {
+       setShowedMovies(JSON.parse(localStorage.getItem('moviesObjects')));
+       setStorageState(true);
+    }
+    if(localStorage.getItem('moviesTypeFull') !== null){
+      console.log(localStorage.getItem('moviesTypeFull'));
+      setSwitchState(localStorage.getItem('moviesTypeFull'));
+    }
+  },[])
   
   
   
@@ -125,7 +136,7 @@ function App() {
             item.src=`https://api.nomoreparties.co/${item.image.url}`})
           fArray= searchFilter(moviesArray,movie)          
           setFiltered(fArray);
-          localStorage.setItem('moviesObjects', fArray);                   
+          localStorage.setItem('moviesObjects', JSON.stringify(fArray.slice(0,currentMovies)));                   
           setShowedMovies(fArray.slice(0,currentMovies))
           setIsLoading(false);                   
         })           
@@ -137,7 +148,7 @@ function App() {
         fArray=searchFilter(cards,movie);
         //сохраняем массив отфильтрованных фильмов
         setFiltered(fArray);
-        localStorage.setItem('moviesObjects', fArray);                
+        localStorage.setItem('moviesObjects', JSON.stringify(fArray.slice(0,currentMovies)));                
         setShowedMovies(fArray.slice(0,currentMovies));               
       }
                
@@ -382,7 +393,8 @@ function App() {
         savedMovies={savedMovies}
         onTypeSwitch={SwitchMovieType}
         isNotificationVisible={notificationVisibility}
-        notificationMessage={notificationMessage}        
+        notificationMessage={notificationMessage}
+        isStorageFull={isStorageFull}        
         exact 
          path='/movies'
          onSize={screenWidth}         

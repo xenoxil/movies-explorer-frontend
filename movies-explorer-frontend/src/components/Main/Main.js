@@ -9,6 +9,8 @@ import Notification from '../Notification/Notification';
 
 
 function Main(props) { 
+  console.log(props.filteredMovies);
+  console.log(props.isSwitched)
    
     return (
       <div className="main">
@@ -17,7 +19,7 @@ function Main(props) {
          renderMovies={props.renderMovies} moreMoviesVisibilityCheck={props.moreMoviesVisibilityCheck} isLoading={props.isLoading}
           onTypeSwitch={props.onTypeSwitch} isSwitched={props.isSwitched}/>
          {props.isLoading ? <Preloader/> 
-         : (<MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} onCardClick={props.onCardClick}
+         : (<MoviesCardList movieCards={props.filteredMovies} isSearched={props.isSearched} isStorageFull={props.isStorageFull} onCardClick={props.onCardClick}
            onLike={props.onLike} savedMovies={props.savedMovies} onDislikeClick={props.onDislikeClick}/>
         )} 
         <MoreMovies isShowed={props.isShowed} onMoreMoviesClick={props.onMoreMoviesClick}  /> 
