@@ -53,7 +53,7 @@ function App() {
   const [addMovies,setAddMovies]=React.useState(4);
   const [showedMovies,setShowedMovies]=React.useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSwitched,setSwitchState] = useState(true);  
+  const [isSwitched,setSwitchState] = useState();  
   const [notificationVisibility,setNotificationVisibility] = useState(false);
   const [notificationMessage,setNotificationMessage] = useState('');
   const [buttonDisableState,setButtonDisableState] = useState(false);
@@ -83,11 +83,17 @@ function App() {
        setShowedMovies(JSON.parse(localStorage.getItem('moviesObjects')));
        setStorageState(true);
     }
-    if(localStorage.getItem('moviesTypeFull') !== null){
-      console.log(localStorage.getItem('moviesTypeFull'));
-      setSwitchState(localStorage.getItem('moviesTypeFull'));
+    if(localStorage.getItem('moviesTypeFull') !== null){     
+      if(localStorage.getItem('moviesTypeFull')==='true'){
+        setSwitchState(true)
+      }
+      else if(localStorage.getItem('moviesTypeFull')==='false'){setSwitchState(false)}      
     }
   },[])
+
+  useEffect(()=>{
+   console.log(isSwitched); 
+  },[isSwitched])
   
   
   
@@ -119,12 +125,14 @@ function App() {
       .catch((err) => console.log("Ошибка:", err));      
     }, []);
   
-    
-
-    function handleSearch(movie){
-      let fArray=[];
+    function saveToLocalStorage(movie,moviesObjects){
       localStorage.setItem('moviesSearchInputValue', movie);
       localStorage.setItem('moviesTypeFull', isSwitched);
+      localStorage.setItem('moviesObjects', moviesObjects);
+    }
+
+    function handleSearch(movie){      
+      let fArray=[];
       // проверяем выполнялся ли поиск и если нет, запрашиваем массив фильмов от Апи Bitmovies
        if(!isSearched){
         setIsLoading(true);
@@ -136,7 +144,7 @@ function App() {
             item.src=`https://api.nomoreparties.co/${item.image.url}`})
           fArray= searchFilter(moviesArray,movie)          
           setFiltered(fArray);
-          localStorage.setItem('moviesObjects', JSON.stringify(fArray.slice(0,currentMovies)));                   
+          saveToLocalStorage(movie,JSON.stringify(fArray.slice(0,currentMovies)))                  
           setShowedMovies(fArray.slice(0,currentMovies))
           setIsLoading(false);                   
         })           
@@ -148,19 +156,21 @@ function App() {
         fArray=searchFilter(cards,movie);
         //сохраняем массив отфильтрованных фильмов
         setFiltered(fArray);
-        localStorage.setItem('moviesObjects', JSON.stringify(fArray.slice(0,currentMovies)));                
+        saveToLocalStorage(movie,JSON.stringify(fArray.slice(0,currentMovies)))                 
         setShowedMovies(fArray.slice(0,currentMovies));               
       }
                
     }
 
-    function typeFiltering(moviesList){
+    function typeFiltering(moviesList){      
       if(isSwitched){        
         return moviesList.filter((item)=>{ return item.duration>40})
       }
       else{
         return moviesList.filter((item)=>{ return item.duration<=40})}
     }
+
+    
 
     function searchFilter(moviesArray,requiredMovie){
       let newArray=moviesArray.filter((movieObj)=>{            
@@ -186,9 +196,10 @@ function App() {
           setIsLoading(false);                            
         } 
         
-        function SwitchMovieType(){
-          setSwitchState(!isSwitched);
+        function SwitchMovieType(){          
+          setSwitchState(!isSwitched)         
           }
+          
     
 
     

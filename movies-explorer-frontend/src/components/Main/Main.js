@@ -9,8 +9,7 @@ import Notification from '../Notification/Notification';
 
 
 function Main(props) { 
-  console.log(props.filteredMovies);
-  console.log(props.isSwitched)
+  console.log(props.filteredMovies);  
    
     return (
       <div className="main">

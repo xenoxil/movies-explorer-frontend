@@ -10,7 +10,6 @@ function SearchForm(props) {
   const searchRef = React.useRef();
   const history = useHistory();
   let isMatchedPath=history.location.pathname==='/movies';
-  console.log(props.isSwitched);
 
   useEffect(() => {
     const lastSearchedInput=(localStorage.getItem('moviesSearchInputValue'));
@@ -19,6 +18,11 @@ function SearchForm(props) {
       searchRef.current.value=lastSearchedInput;
     }    
  },[])
+
+
+ useEffect(()=>{ 
+  if(props.isSwitched!==undefined){isMatchedPath ?   props.onSearchClick(searchRef.current.value) : props.onSearch(searchRef.current.value)}
+},[props.isSwitched])
 
   function searchClickMovies(e){
    e.preventDefault();
@@ -31,16 +35,17 @@ function SearchForm(props) {
   }
 
   function SwitchMovieTypeHandler(e){ 
-    e.preventDefault()
-    props.onTypeSwitch();
-    searchClickMovies(e);
+    e.preventDefault();
+    props.onTypeSwitch();    
+   
+           
+    
   }
 
   function SwitchSavedMovieTypeHandler(e){
-    e.preventDefault();    
+    e.preventDefault();   
+    /*props.onTypeSwitch();*/ 
     searchSavedMovies(e);
-    props.onTypeSwitch();
-    
   }
 
   

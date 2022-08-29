@@ -5,18 +5,12 @@ import { useHistory } from 'react-router-dom';
 function MovieTypeContainer(props) { 
   const history = useHistory();
   let isMatchedPath=history.location.pathname==='/movies';
-  console.log(props.isSwitched);
-
   
-
-
-
-  function SwitchMovieTypeHandler(e){ 
+  function SwitchMovieTypeHandler(e){
     props.SwitchMovieTypeHandler(e);
   }
 
-  function SwitchSavedMovieTypeHandler(e){    
-   
+  function SwitchSavedMovieTypeHandler(e){
    props.SwitchSavedMovieTypeHandler(e);
   }
 
