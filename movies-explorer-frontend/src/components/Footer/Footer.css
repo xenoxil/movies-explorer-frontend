@@ -1,116 +1,118 @@
-.footer{
-    background-color: #FFFFFF;
-    width:1140px;    
-    margin:0 auto;
+.footer {
+  background-color: #ffffff;
+  width: 1140px;
+  margin: 0 auto;
 }
 
-@media screen and (max-width:1279px) {
-    .footer{
-        width:668px;        
-    }
+@media screen and (max-width: 1279px) {
+  .footer {
+    width: 668px;
+  }
 }
-@media screen and (max-width:767px) {
-    .footer{
-        width: 270px;       
-    }
+@media screen and (max-width: 767px) {
+  .footer {
+    width: 270px;
+  }
 }
 
-.footer__title{
-    margin:79px 0 0;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #E8E8E8;
+.footer__title {
+  margin: 79px 0 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8e8e8;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #a0a0a0;
+}
+@media screen and (max-width: 767px) {
+  .footer__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+.footer__copyright {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  /* identical to box height */
+  color: #000000;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__copyright {
     font-family: Inter, Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    /* identical to box height */
-    
-    text-align: center;
-    
-    color: #A0A0A0;
-}
-@media screen and (max-width:767px) {
-    .footer__title{
-        font-size: 12px;
-        line-height: 15px;
-    }
-}
-.footer__container{
-    display:flex;
-    justify-content: space-between;
-}
-
-@media screen and (max-width:767px) {
-    .footer__container{
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
-        
-    }
-}
-.footer__copyright{
-    font-family: Inter, Arial, Helvetica, sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 13px;
-line-height: 16px;
-/* identical to box height */
-color: #000000;
-}
-
-@media screen and (max-width:767px) {
-    .footer__copyright{
-        font-family: Inter, Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     line-height: 15px;
-    margin:0 auto 10px;
-    }
+    margin: 0 auto 10px;
+  }
 }
 
-.footer__links{
-    list-style: none;
-    display: flex;
+.footer__links {
+  list-style: none;
+  display: flex;
 }
 
-@media screen and (max-width:767px) {
-    .footer__links{        
-        flex-direction: column;
-        justify-content: center;
-        padding:0;
-        margin:30px auto;
-    }
+@media screen and (max-width: 767px) {
+  .footer__links {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 30px auto;
+  }
 }
 
-.footer__link{
-    text-decoration: none;
-    margin:0;
-    margin-right: 20px;
-    font-family: Inter, Arial, Helvetica, sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 13px;
-line-height: 16px;
-color: #000000;
-
+.footer__link {
+  text-decoration: none;
+  margin: 0;
+  margin-right: 20px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
 }
 
-@media screen and (max-width:767px) {
-    .footer__link{ 
-        margin-right: 0px;
-        margin:12px auto 0;        
+.footer__link:visited {
+  color: #000000;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__link {
+    margin-right: 0px;
+    margin: 12px auto 0;
     font-size: 12px;
-    line-height: 15px;    
-    }
+    line-height: 15px;
+  }
 }
-.footer__link:last-child{
-    margin-right: 0;
+.footer__link:last-child {
+  margin-right: 0;
 }
 
-@media screen and (max-width:767px) {
-    .footer__link:last-child{
-        margin-right: auto;
-    }
+@media screen and (max-width: 767px) {
+  .footer__link:last-child {
+    margin-right: auto;
+  }
 }

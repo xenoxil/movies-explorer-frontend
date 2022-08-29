@@ -1,21 +1,48 @@
-import React from 'react'
-import likePic from '../../images/cardLikePic.svg'
-import defaultPic from '../../images/defaultMovie.png'
-import unlikePic from '../../images/unlikePic.svg'
-
-    
-
 function MoviesCard(props) {
-    return (
-        <li className='moviesCard'>
-          <img src={props.cardPic ? props.cardPic :defaultPic } alt={props.name} className='moviesCard__pic'/>
-          <div className='moviesCard__container'>
-              <p className='moviesCard__name'>{props.movieName}</p>
-              <button className='moviesCard__likeBtn' aria-label='Кнопка лайк'><img className='moviesCard__likePic' src={props.isLiked ? likePic : unlikePic} alt='кнопка лайка'/></button>    
-          </div>
-          <p className='moviesCard__duration'>{props.duration}</p>
-        </li>                
-    )
+  const isLiked = props.savedMovies.some((movie) => movie.movieId === props.cardObj.id);
+
+  function handleLikeClick() {
+    props.onLike(props.cardObj);
+  }
+  function handleDislike() {
+    props.onDislikeClick(props.cardObj);
+  }
+  function getTimeFromMins(mins) {
+    let hours = Math.trunc(mins / 60);
+    let minutes = mins % 60;
+    if (hours > 0) {
+      return hours + 'ч ' + minutes + 'м';
+    } else {
+      return minutes + 'м';
+    }
+  }
+
+  const timeDuration = getTimeFromMins(props.duration);
+
+  return (
+    <li className="moviesCard">
+      <a href={props.cardObj.trailerLink} target="_blank" rel="noreferrer">
+        <img src={props.cardPic} alt={props.name} className="moviesCard__pic" />
+      </a>
+      <div className="moviesCard__container">
+        <p className="moviesCard__name">{props.movieName}</p>
+        <button
+          className={
+            props.savedMoviesPage
+              ? 'moviesCard__deleteButton'
+              : isLiked
+              ? 'moviesCard__likeBtn '
+              : 'moviesCard__likeBtn_active'
+          }
+          aria-label="Кнопка лайк"
+          type="button"
+          onClick={isLiked ? handleDislike : handleLikeClick}>
+          {' '}
+        </button>
+      </div>
+      <p className="moviesCard__duration">{timeDuration}</p>
+    </li>
+  );
 }
 
-export default MoviesCard
+export default MoviesCard;

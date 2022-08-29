@@ -5,15 +5,16 @@ export class Auth {
     this._headers = this._options.headers;
   }
 
-  register(email, password) {
+  register(email, password, name) {
     return fetch(`${this._options.baseUrl}/signup`, {
-      method: "POST",     
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
         password,
+        name,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -26,10 +27,10 @@ export class Auth {
 
   login(email, password) {
     return fetch(`${this._options.baseUrl}/signin`, {
-      method: "POST",
-      credentials: "include",
+      method: 'POST',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
@@ -45,12 +46,12 @@ export class Auth {
   }
 
   logout() {
-    return fetch(`${this._options.baseUrl}/`, {
-      method: "delete",
-      credentials: "include",
+    return fetch(`${this._options.baseUrl}/signout`, {
+      method: 'delete',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
-      },     
+        'Content-Type': 'application/json',
+      },
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -59,15 +60,13 @@ export class Auth {
       }
     });
   }
-
- 
 }
 
 const auth = new Auth({
- //baseUrl: 'http://localhost:3001',
-  baseUrl: "https://api.xenoxil.mesto.nomoredomains.icu",
+  // baseUrl: 'http://localhost:3001',
+  baseUrl: "https://xenoxil.movie-explorer.nomoreparties.sbs",
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
