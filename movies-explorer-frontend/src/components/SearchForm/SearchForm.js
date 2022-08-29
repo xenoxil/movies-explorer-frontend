@@ -14,7 +14,7 @@ function SearchForm(props) {
   useEffect(() => {
     const lastSearchedInput=(localStorage.getItem('moviesSearchInputValue'));
     
-    if(lastSearchedInput!==null){
+    if(lastSearchedInput!==null && isMatchedPath){
       searchRef.current.value=lastSearchedInput;
     }    
  },[])
@@ -30,22 +30,19 @@ function SearchForm(props) {
   } 
 
   function searchSavedMovies(e){
-    e.preventDefault();
+    e.preventDefault();    
     props.onSearch(searchRef.current.value);
+    
   }
 
   function SwitchMovieTypeHandler(e){ 
     e.preventDefault();
-    props.onTypeSwitch();    
-   
-           
-    
+    props.onTypeSwitch(); 
   }
 
   function SwitchSavedMovieTypeHandler(e){
     e.preventDefault();   
-    /*props.onTypeSwitch();*/ 
-    searchSavedMovies(e);
+    props.onTypeSwitch();
   }
 
   

@@ -46,7 +46,7 @@ function App() {
 
   const [cards, setCards] = React.useState([]);
   const [isSearched, setSearched] = React.useState(false);
-  const [isSavedSearched, setSavedSearched] = React.useState(false);
+  
   const [filteredArray, setFiltered] = React.useState([]); 
   const [currentMovies,setCurrentMovies] = React.useState(0);
   const [isMoreMoviesVisible,setMoreMoviesVisibility] = React.useState(false);
@@ -57,7 +57,8 @@ function App() {
   const [notificationVisibility,setNotificationVisibility] = useState(false);
   const [notificationMessage,setNotificationMessage] = useState('');
   const [buttonDisableState,setButtonDisableState] = useState(false);
-  const [isStorageFull,setStorageState] = useState(false)
+  const [isStorageFull,setStorageState] = useState(false);
+  const [isSavedSearched, setSavedSearched] = React.useState(false);
 
     
   
@@ -187,9 +188,8 @@ function App() {
     }
 
     function handleSavedMoviesSearch(movie){      
-       setIsLoading(true);                          
-       /*setCards(savedMovies);*/
-       setSavedSearched(true);             
+       setIsLoading(true); 
+       setSavedSearched(true);            
        let fArray=searchFilter(savedMovies,movie);          
           setFiltered(fArray);
           setShowedMovies(fArray.slice(0,currentMovies))
@@ -295,8 +295,8 @@ function App() {
   function moreMoviesVisibilityCheck(){    
     currentMovies<filteredArray.length ? setMoreMoviesVisibility(true) : setMoreMoviesVisibility(false)
   }
-  function renderMovies(){
-    setShowedMovies(filteredArray.slice(0,currentMovies));
+  function renderMovies(movieArray){
+    setShowedMovies(movieArray.slice(0,currentMovies));
   }
   function handleMoreMoviesClick(){
     setCurrentMovies(currentMovies+addMovies);
@@ -328,7 +328,7 @@ function App() {
           arrayWithoutDeletedMovie.push(movie)
         }        
       })
-      setSavedMovies(arrayWithoutDeletedMovie)
+      setSavedMovies(arrayWithoutDeletedMovie);      
       handlingNotification(`Фильм успешно удалён`)       
     })
     .catch((err)=>{
@@ -336,6 +336,29 @@ function App() {
        handlingNotification(`Ошибка при удалении фильма ${err}`);
      })
      }
+
+    function handleDeleteMovie(card){
+      const deleteId = savedMovies.find((movie) => movie.movieId===card.id)._id;
+    userApi.removeMovie(deleteId)
+    .then(() => {
+      const arrayWithoutDeletedMovie=[];
+      filteredArray.forEach((movie) => { 
+        if(movie.movieId!==card.id){          
+          arrayWithoutDeletedMovie.push(movie)
+        }
+      })
+      console.log(arrayWithoutDeletedMovie);
+      setFiltered(arrayWithoutDeletedMovie);
+      renderMovies(arrayWithoutDeletedMovie);
+      setSavedMovies(arrayWithoutDeletedMovie);  
+      handlingNotification(`Фильм успешно удалён`)       
+    })
+    .catch((err)=>{
+       console.log(err)
+       handlingNotification(`Ошибка при удалении фильма ${err}`);
+     })
+     }
+    
 
   return (
     <div className="App">
@@ -356,7 +379,7 @@ function App() {
         savedMovies={savedMovies}
         isSavedSearched={isSavedSearched}
         onLikeClick={handleLike}
-        onDislikeClick={handleDislike}
+        onDislikeClick={handleDeleteMovie}
         isNotificationVisible={notificationVisibility}
         notificationMessage={notificationMessage}           
         exact 
