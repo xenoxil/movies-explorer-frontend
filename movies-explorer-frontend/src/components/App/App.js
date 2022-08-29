@@ -211,6 +211,7 @@ function App() {
   }
 
   function handleLoginClick(email, password) {
+    setButtonDisableState(true);
     auth
       .login(email, password)
       .then(() => {
@@ -234,6 +235,9 @@ function App() {
           console.log(err);
           handlingNotification(`Ошибка при входе: ${err}`);
         }
+      })
+      .finally(() => {
+        setButtonDisableState(false);
       });
   }
 
@@ -382,6 +386,7 @@ function App() {
               onLogin={handleLoginClick}
               isNotificationVisible={notificationVisibility}
               notificationMessage={notificationMessage}
+              buttonDisableState={buttonDisableState}
             />
           </Route>
           <Route exact path="/signup">

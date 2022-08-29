@@ -48,7 +48,7 @@ function Login(props) {
           autoComplete="off"
         />
         <span className="error" id="loginPassword-error" />
-        <button className="login__button" type="submit" onClick={handleSubmit}>
+        <button className="login__button" type="submit" onClick={handleSubmit} disabled={props.buttonDisableState}>
           Войти
         </button>
       </form>
