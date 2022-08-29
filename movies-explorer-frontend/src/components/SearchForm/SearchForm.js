@@ -9,10 +9,9 @@ function SearchForm(props) {
   const searchRef = React.useRef();
   const history = useHistory();
   let isMatchedPath = history.location.pathname === '/movies';
+  const lastSearchedInput = localStorage.getItem('moviesSearchInputValue');
 
   useEffect(() => {
-    const lastSearchedInput = localStorage.getItem('moviesSearchInputValue');
-
     if (lastSearchedInput !== null && isMatchedPath) {
       searchRef.current.value = lastSearchedInput;
     }
