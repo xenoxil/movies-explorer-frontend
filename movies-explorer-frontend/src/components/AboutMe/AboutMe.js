@@ -79,7 +79,7 @@ function AboutMe(props) {
             className="aboutMe__portfolio-siteLink"
             target="_blank"
             rel="nofollow noopener noreferrer"
-            href="https://https://xenoxil.mesto.nomoreparties.sbs/">
+            href="https://xenoxil.mesto.nomoreparties.sbs/">
             <img src={linkArrow} alt="Ссылка на сайт" className="aboutMe__linkArrow" />
           </a>
         </li>
