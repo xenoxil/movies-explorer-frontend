@@ -15,7 +15,7 @@ function Profile(props) {
 
   return (
     <div className="profile">
-      <Header className="main__header" />
+      <Header className="main__header" onSize={props.onSize}/>
       <p className="profile__greetings">Привет, {userProfile.data.name}!</p>
       <form className="profile__form">
         <div className="profile__container">

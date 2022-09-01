@@ -85,6 +85,7 @@ function App() {
   }, []);
 
   React.useEffect(() => {
+    document.title = `Movies-explorer`;
     userApi
       .getProfile()
       .then((profileObj) => {
@@ -378,6 +379,7 @@ function App() {
             isNotificationVisible={notificationVisibility}
             notificationMessage={notificationMessage}
             buttonDisableState={buttonDisableState}
+            onSize={screenWidth}
             exact
             path="/profile"
           />

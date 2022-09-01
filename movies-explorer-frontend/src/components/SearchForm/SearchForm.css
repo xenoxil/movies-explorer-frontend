@@ -43,7 +43,7 @@
 .searchForm__input {
   min-width: 789px;
   padding: 0;
-  border: 0;
+  border: 0;  
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -73,6 +73,7 @@
     padding-left: 19px;
     font-size: 14px;
     line-height: 20px;
+    border-radius: 9px;
   }
 }
 

@@ -59,7 +59,7 @@ function AboutMe(props) {
             className="aboutMe__portfolio-siteLink"
             target="_blank"
             rel="nofollow noopener noreferrer"
-            href="https://www.facebook.com">
+            href="https://how-to-learn-smoky.vercel.app/">
             <img src={linkArrow} alt="Ссылка на сайт" className="aboutMe__linkArrow" />
           </a>
         </li>
@@ -69,7 +69,7 @@ function AboutMe(props) {
             className="aboutMe__portfolio-siteLink"
             target="_blank"
             rel="nofollow noopener noreferrer"
-            href="https://www.facebook.com">
+            href="https://russian-travel-nine.vercel.app/">
             <img src={linkArrow} alt="Ссылка на сайт" className="aboutMe__linkArrow" />
           </a>
         </li>
@@ -79,7 +79,7 @@ function AboutMe(props) {
             className="aboutMe__portfolio-siteLink"
             target="_blank"
             rel="nofollow noopener noreferrer"
-            href="https://www.facebook.com">
+            href="https://https://xenoxil.mesto.nomoreparties.sbs/">
             <img src={linkArrow} alt="Ссылка на сайт" className="aboutMe__linkArrow" />
           </a>
         </li>
